@@ -115,5 +115,9 @@ public:
 
     string funS(const string Tmp); // S盒置换
 
-    void Operation(Key key, string Text, bool flag);
+    string RestorePlaintext();
+
+    string StringToBits(string s);
+
+    string Operation(Key key, string Text, bool flag);
 };

@@ -22,7 +22,6 @@ private:
     int FileSize; // 文件大小
     int BlockNum; // 文件块数
     string Plaintext; // 存储明文
-    string FileBits; // 文件内容
     int Supple; // 末块补充长度
 
 public:
@@ -31,5 +30,6 @@ public:
     void Save_EN(); // 存储文件
     void Load_DE(); // 读取文件
     void Save_DE(); // 存储文件
+    string StringToBits(string s); // 字符串转二进制串
     void Operation(bool flag, Key key); // 运行
 };
