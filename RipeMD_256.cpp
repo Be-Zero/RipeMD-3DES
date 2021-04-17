@@ -4,11 +4,7 @@
 
 #include "RipeMD_256.h"
 
-RipeMD_256::RipeMD_256() {
-    RMDSize = 256;
-}
-
-void RipeMD_256::MDinit(ulong *MDbuf) {
+void RipeMD_256::MDinit() { // 初始化
     MDbuf[0] = 0x67452301UL;
     MDbuf[1] = 0xefcdab89UL;
     MDbuf[2] = 0x98badcfeUL;
@@ -19,72 +15,72 @@ void RipeMD_256::MDinit(ulong *MDbuf) {
     MDbuf[7] = 0x01234567UL;
 }
 
-ulong RipeMD_256::BytesToUlong(byte *strptr) {
-    return (((ulong) *((strptr) + 3) << 24) | ((ulong) *((strptr) + 2) << 16) | ((ulong) *((strptr) + 1) << 8) |
-            ((ulong) *(strptr)));
+ulong RipeMD_256::BytesToUlong(byte *strptr) { // 每次处理四个字节，字节转ulong
+    return ((ulong) *(strptr + 3) << 24) | ((ulong) *(strptr + 2) << 16) | ((ulong) *(strptr + 1) << 8) |
+            ((ulong) *(strptr));
 }
 
-ulong RipeMD_256::F(ulong x, ulong y, ulong z) {
-    return ((x) ^ (y) ^ (z));
+ulong RipeMD_256::F(ulong x, ulong y, ulong z) { // F函数
+    return x ^ y ^ z;
 }
 
-ulong RipeMD_256::G(ulong x, ulong y, ulong z) {
-    return (((x) & (y)) | (~(x) & (z)));
+ulong RipeMD_256::G(ulong x, ulong y, ulong z) { // G函数
+    return (x & y) | (~x & z);
 }
 
-ulong RipeMD_256::H(ulong x, ulong y, ulong z) {
-    return (((x) | ~(y)) ^ (z));
+ulong RipeMD_256::H(ulong x, ulong y, ulong z) { // H函数
+    return (x | ~y) ^ z;
 }
 
-ulong RipeMD_256::I(ulong x, ulong y, ulong z) {
-    return (((x) & (z)) | ((y) & ~(z)));
+ulong RipeMD_256::I(ulong x, ulong y, ulong z) { // I函数
+    return (x & z) | (y & ~z);
 }
 
-ulong RipeMD_256::ROL(ulong x, ulong n) {
-    return (((x) << (n)) | ((x) >> (32 - (n))));
+ulong RipeMD_256::ROL(ulong x, ulong n) { //
+    return (x << n) | (x >> (32 - n));
 }
 
-void RipeMD_256::FF(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += F((b), (c), (d)) + (x);
-    (a) = ROL((a), (s));
+void RipeMD_256::FF(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // FF函数
+    a += F(b, c, d) + x;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::GG(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += G((b), (c), (d)) + (x) + 0x5a827999UL;
-    (a) = ROL((a), (s));
+void RipeMD_256::GG(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // GG函数
+    a += G(b, c, d) + x + 0x5a827999UL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::HH(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += H((b), (c), (d)) + (x) + 0x6ed9eba1UL;
-    (a) = ROL((a), (s));
+void RipeMD_256::HH(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // HH函数
+    a += H(b, c, d) + x + 0x6ed9eba1UL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::II(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += I((b), (c), (d)) + (x) + 0x8f1bbcdcUL;
-    (a) = ROL((a), (s));
+void RipeMD_256::II(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // II函数
+    a += I(b, c, d) + x + 0x8f1bbcdcUL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::FFF(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += F((b), (c), (d)) + (x);
-    (a) = ROL((a), (s));
+void RipeMD_256::FFF(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // FFF函数
+    a += F(b, c, d) + x;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::GGG(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += G((b), (c), (d)) + (x) + 0x6d703ef3UL;
-    (a) = ROL((a), (s));
+void RipeMD_256::GGG(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // GGG函数
+    a += G(b, c, d) + x + 0x6d703ef3UL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::HHH(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += H((b), (c), (d)) + (x) + 0x5c4dd124UL;
-    (a) = ROL((a), (s));
+void RipeMD_256::HHH(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // HHH函数
+    a += H(b, c, d) + x + 0x5c4dd124UL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::III(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) {
-    (a) += I((b), (c), (d)) + (x) + 0x50a28be6UL;
-    (a) = ROL((a), (s));
+void RipeMD_256::III(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s) { // III函数
+    a += I(b, c, d) + x + 0x50a28be6UL;
+    a = ROL(a, s);
 }
 
-void RipeMD_256::compress(ulong *MDbuf, ulong *X) {
+void RipeMD_256::compress(ulong *X) { // 压缩函数
     ulong aa = MDbuf[0], bb = MDbuf[1], cc = MDbuf[2], dd = MDbuf[3];
     ulong aaa = MDbuf[4], bbb = MDbuf[5], ccc = MDbuf[6], ddd = MDbuf[7];
     ulong tmp;
@@ -260,70 +256,62 @@ void RipeMD_256::compress(ulong *MDbuf, ulong *X) {
     MDbuf[7] += ddd;
 }
 
-void RipeMD_256::MDfinish(ulong *MDbuf, byte *strptr, ulong lswlen,
-                          ulong mswlen) { // lswlen = lenth, strptr = message, mswlen = 0
-    unsigned int i;                                 /* counter       */
-    ulong X[16];                             /* message words */
+void RipeMD_256::MDfinish(byte *message, ulong lenth, ulong mswlen) { // 结束处理部分
+    // mswlen = 0
+    ulong X[16]; // message words
 
     memset(X, 0, 16 * sizeof(ulong));
 
-    /* put bytes from strptr into X */
-    for (i = 0; i < (lswlen & 63); i++) {
-        /* byte i goes into word X[i div 4] at pos.  8*(i mod 4)  */
-        X[i >> 2] ^= (ulong) *strptr++ << (8 * (i & 3));
-    }
+    // 将来自message的字节放入X
+    for (unsigned int i = 0; i < (lenth & 63); i++)
+        X[i >> 2] ^= (ulong) *message++ << (8 * (i & 3));
 
-    /* append the bit m_n == 1 */
-    X[(lswlen >> 2) & 15] ^= (ulong) 1 << (8 * (lswlen & 3) + 7);
+    // append the bit m_n == 1
+    X[(lenth >> 2) & 15] ^= (ulong) 1 << (8 * (lenth & 3) + 7);
 
-    if ((lswlen & 63) > 55) {
-        /* length goes to next block */
-        compress(MDbuf, X);
+    if ((lenth & 63) > 55) {
+        // length goes to next block
+        compress(X);
         memset(X, 0, 16 * sizeof(ulong));
     }
 
-    /* append length in bits*/
-    X[14] = lswlen << 3;
-    X[15] = (lswlen >> 29) | (mswlen << 3);
-    compress(MDbuf, X);
+    // append length in bits
+    X[14] = lenth << 3;
+    X[15] = (lenth >> 29) | (mswlen << 3);
+    compress(X); // 压缩函数
 }
 
-string RipeMD_256::RMD(byte *message) {
-    ulong MDbuf[RMDSize / 32 + 1];   // contains (A, B, C, D) unsigned long 长度为4的数组
-    byte hashcode[RMDSize / 8 + 1]; //* for final hash-value         *//*
-    ulong X[16];               // current 16-word chunk 当前16字的块
-    unsigned int i;                   // 计数器
-    ulong length;              // 信息的长度
-    ulong nbytes;              // 尚未处理的字节数
+string RipeMD_256::RMD(byte *message) { // 运行函数
+    byte hashcode[33]; // 存储最终结果
+    ulong X[16]; // 当前16字的块
 
-    /* initialize */
-    MDinit(MDbuf); // 初始化
-    length = (ulong) strlen((char *) message); // 获取信息的长度
+    MDinit(); // 初始化
+    ulong length = (ulong) strlen((char *) message); // 获取用户口令的长度
 
     /* process message in 16-word chunks */
-    for (nbytes = length; nbytes > 63; nbytes -= 64) {
-        for (i = 0; i < 16; i++) {
-            X[i] = BytesToUlong(message);
-            message += 4;
+    for (ulong nbytes = length; nbytes > 63; nbytes -= 64) // 尚未处理的字节数，长度模64左移处理
+    {
+        for (unsigned int i = 0; i < 16; i++) {
+            X[i] = BytesToUlong(message); // 每次处理四个字节，存入X[i]
+            message += 4; // 对指针移动
         }
-        compress(MDbuf, X);
-    }                                    /* length mod 64 bytes left */
+        compress(X); // 压缩函数
+    }
 
-    /* finish: */
-    MDfinish(MDbuf, message, length, 0);
+    MDfinish(message, length, 0); // 结束处理部分
 
-    for (i = 0; i < RMDSize / 8; i += 4) {
-        hashcode[i] = MDbuf[i >> 2];         /* implicit cast to byte  */
-        hashcode[i + 1] = (MDbuf[i >> 2] >> 8);  /*  extracts the 8 least  */
-        hashcode[i + 2] = (MDbuf[i >> 2] >> 16);  /*  significant bits.     */
+    for (unsigned int i = 0; i < 32; i += 4) { // 隐式转换为字节，至少提取8个有效位
+        hashcode[i] = MDbuf[i >> 2];
+        hashcode[i + 1] = (MDbuf[i >> 2] >> 8);
+        hashcode[i + 2] = (MDbuf[i >> 2] >> 16);
         hashcode[i + 3] = (MDbuf[i >> 2] >> 24);
     }
 
     string ret = "";
-    for (int i = 0; i < RMDSize / 8; i++) {
+    for (unsigned int i = 0; i < 32; i++) {
         bitset<8> bt(hashcode[i]);
         ret += bt.to_string();
     }
 
-    return ret;
+    return ret; // 返回string串
 }

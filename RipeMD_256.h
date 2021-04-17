@@ -20,16 +20,14 @@ typedef unsigned long ulong;
 
 class RipeMD_256 {
 private:
-    ulong RMDSize;
+    ulong MDbuf[8];
 
 public:
-    RipeMD_256();
-
-    void MDinit(ulong MDbuf[]); // 初始化
+    void MDinit(); // 初始化
 
     ulong BytesToUlong(byte *strptr); // 转换
 
-    void compress(ulong *MDbuf, ulong *X);
+    void compress(ulong *X);
 
     ulong F(ulong x, ulong y, ulong z);
 
@@ -57,7 +55,7 @@ public:
 
     void III(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s);
 
-    void MDfinish(ulong *MDbuf, byte *strptr, ulong lswlen, ulong mswlen);
+    void MDfinish(byte *strptr, ulong lswlen, ulong mswlen);
 
     string RMD(byte *message);
 };

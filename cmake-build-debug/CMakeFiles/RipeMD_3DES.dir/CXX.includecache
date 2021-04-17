@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+F:/RipeMD-3DES/File_IO.cpp
+File_IO.h
+F:/RipeMD-3DES/File_IO.h
+
 F:/RipeMD-3DES/File_IO.h
 iostream
 -
@@ -31,6 +35,18 @@ string
 -
 bitset
 -
+RipeMD_256.h
+F:/RipeMD-3DES/RipeMD_256.h
+
+F:/RipeMD-3DES/OPMode.cpp
+OPMode.h
+F:/RipeMD-3DES/OPMode.h
+
+F:/RipeMD-3DES/OPMode.h
+
+F:/RipeMD-3DES/RipeMD_256.cpp
+RipeMD_256.h
+F:/RipeMD-3DES/RipeMD_256.h
 
 F:/RipeMD-3DES/RipeMD_256.h
 string.h
@@ -51,8 +67,10 @@ F:/RipeMD-3DES/Run.h
 F:/RipeMD-3DES/Run.h
 File_IO.h
 F:/RipeMD-3DES/File_IO.h
-RipeMD_256.h
-F:/RipeMD-3DES/RipeMD_256.h
+
+F:/RipeMD-3DES/TripleDes.cpp
+TripleDes.h
+F:/RipeMD-3DES/TripleDes.h
 
 F:/RipeMD-3DES/TripleDes.h
 iostream

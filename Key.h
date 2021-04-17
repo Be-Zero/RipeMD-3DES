@@ -7,6 +7,7 @@
 
 #include <string>
 #include <bitset>
+#include "RipeMD_256.h"
 
 using namespace std;
 

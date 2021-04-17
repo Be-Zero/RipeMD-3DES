@@ -18,8 +18,6 @@ using namespace std;
 
 #include "Key.h"
 
-using namespace std;
-
 #endif //SECURITYSYSTEM_FILE_IO_H
 
 class TripleDes {

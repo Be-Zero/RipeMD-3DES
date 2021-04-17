@@ -176,6 +176,33 @@ Key.cpp.s:
 	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Key.cpp.s
 .PHONY : Key.cpp.s
 
+OPMode.obj: OPMode.cpp.obj
+
+.PHONY : OPMode.obj
+
+# target to build an object file
+OPMode.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj
+.PHONY : OPMode.cpp.obj
+
+OPMode.i: OPMode.cpp.i
+
+.PHONY : OPMode.i
+
+# target to preprocess a source file
+OPMode.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.i
+.PHONY : OPMode.cpp.i
+
+OPMode.s: OPMode.cpp.s
+
+.PHONY : OPMode.s
+
+# target to generate assembly for a file
+OPMode.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.s
+.PHONY : OPMode.cpp.s
+
 RipeMD_256.obj: RipeMD_256.cpp.obj
 
 .PHONY : RipeMD_256.obj
@@ -272,6 +299,9 @@ help:
 	@echo ... Key.obj
 	@echo ... Key.i
 	@echo ... Key.s
+	@echo ... OPMode.obj
+	@echo ... OPMode.i
+	@echo ... OPMode.s
 	@echo ... RipeMD_256.obj
 	@echo ... RipeMD_256.i
 	@echo ... RipeMD_256.s

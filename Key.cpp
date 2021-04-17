@@ -8,9 +8,9 @@ Key::Key(string In) {
     UserKey = In;
 }
 
-void Key::RipeMD_process() { // TODO RipeMD
-//    UserBitKey = StringToBits(UserKey);
-    UserBitKey = UserKey;
+void Key::RipeMD_process() {
+    RipeMD_256 ep;
+    UserBitKey = ep.RMD((byte*)"message");
 }
 
 string Key::Transform(const string In, const char *Table, int len) { // 将64位密钥压缩位56位
@@ -51,13 +51,4 @@ string Key::MoveLeft(string T, int flag) { // 循环移位
 
 string Key::GetSubKey(int num, int round) { // 获取子密钥
     return SubKey[num][round];
-}
-
-string Key::StringToBits(string s) { // 字符串转二进制串
-    string ans = "";
-    for (int i = 0; i < s.size(); ++i) {
-        bitset<8> tmp = s[i];
-        ans += tmp.to_string();
-    }
-    return ans;
 }
