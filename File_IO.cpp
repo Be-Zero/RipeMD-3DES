@@ -44,7 +44,7 @@ void File_IO::Save_EN() {
 void File_IO::Load_DE() {
     ifstream file(FilePath, ios::in | ios::binary | ios::ate); // 以二进制读取文件，并将当前指针位置指向文件末尾
     FileSize = file.tellg(); // 返回当前位置的字节数，表示文件大小
-//    cout<<FileSize<<endl;
+
     BlockNum = (FileSize - 32) / 8; // 需要解密的块数
     file.seekg(0, ios::beg); // 将文件指针位置指向文件开始处
     char *buffer = new char[FileSize + 1]; // 初始化明文指针

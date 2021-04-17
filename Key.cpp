@@ -9,7 +9,8 @@ Key::Key(string In) {
 }
 
 void Key::RipeMD_process() { // TODO RipeMD
-    UserBitKey = StringToBits(UserKey);
+//    UserBitKey = StringToBits(UserKey);
+    UserBitKey = UserKey;
 }
 
 string Key::Transform(const string In, const char *Table, int len) { // 将64位密钥压缩位56位

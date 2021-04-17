@@ -92,6 +92,12 @@
 		<Unit filename="F:/RipeMD-3DES/Key.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
+		<Unit filename="F:/RipeMD-3DES/RipeMD_256.cpp">
+			<Option target="RipeMD_3DES"/>
+		</Unit>
+		<Unit filename="F:/RipeMD-3DES/RipeMD_256.h">
+			<Option target="RipeMD_3DES"/>
+		</Unit>
 		<Unit filename="F:/RipeMD-3DES/Run.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
