@@ -14,11 +14,17 @@ using namespace std;
 
 class OPMode {
 private:
+    string Plaintext;
+
+    string res;
+
     string FilaPath;
 
     string UserKey;
 
     bool flag;
+
+    string InitialVector;
 
 public:
     OPMode(string Path, string Key, bool E_D);
@@ -32,4 +38,12 @@ public:
     void OFB();
 
     void CTR();
+
+    void PCBC();
+
+    string StringToBits(string s);
+
+    string RestorePlaintext(string s);
+
+    bitset<64> OpPlus (bitset<64> a, bitset<64> b);
 };

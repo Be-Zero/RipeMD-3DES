@@ -8,7 +8,7 @@ File_IO::File_IO(string In) {
     FilePath = In;
 }
 
-void File_IO::Load_EN() {
+string File_IO::Load_EN() {
     ifstream file(FilePath, ios::in | ios::binary | ios::ate); // 以二进制读取文件，并将当前指针位置指向文件末尾
     FileSize = file.tellg(); // 返回当前位置的长度，表示文件大小
     BlockNum = (FileSize + 7) / 8; // 需要加密的块数
@@ -21,9 +21,11 @@ void File_IO::Load_EN() {
         Plaintext += "0";
     delete (buffer); // 释放指针
     file.close(); // 关闭文件
+    return Plaintext;
 }
 
-void File_IO::Save_EN() {
+void File_IO::Save_EN(string In) {
+    Plaintext = In;
     char *buffer = new char[BlockNum * 8];
     strcpy(buffer, Plaintext.c_str());
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
@@ -41,7 +43,7 @@ void File_IO::Save_EN() {
     file.close();
 }
 
-void File_IO::Load_DE() {
+string File_IO::Load_DE() {
     ifstream file(FilePath, ios::in | ios::binary | ios::ate); // 以二进制读取文件，并将当前指针位置指向文件末尾
     FileSize = file.tellg(); // 返回当前位置的字节数，表示文件大小
 
@@ -59,9 +61,11 @@ void File_IO::Load_DE() {
     Supple = b.to_ulong();
     FileSize -= Supple;
     file.close(); // 关闭文件
+    return Plaintext;
 }
 
-void File_IO::Save_DE() {
+void File_IO::Save_DE(string In) {
+    Plaintext = In;
     char *buffer = new char[FileSize];
     strcpy(buffer, Plaintext.substr(0, FileSize).c_str());
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
@@ -70,17 +74,4 @@ void File_IO::Save_DE() {
     file.write(buffer, FileSize);
     delete (buffer);
     file.close();
-}
-
-void File_IO::Operation(bool flag, Key key) {
-    TripleDes des;
-    if (flag) {
-        Load_EN();
-        Plaintext = des.Operation(key, Plaintext, flag);
-        Save_EN();
-    } else {
-        Load_DE();
-        Plaintext = des.Operation(key, Plaintext, flag);
-        Save_DE();
-    }
 }

@@ -4,23 +4,23 @@
 
 #include "TripleDes.h"
 
-void TripleDes::GetBitsText(string T) { // TODO 获取明文
+void TripleDes::GetBitsText(string T) {
     BitsText = StringToBits(T);
 }
 
 void TripleDes::DES(Key key, int flag, bool Type) {
-    BitsBlocks = Transform(BitsBlocks, Table_IP, 64); // 将明文转换为64位
+    BitsText = Transform(BitsText, Table_IP, 64); // 将明文转换为64位
 
     if (Type == ENCRYPT) //加密
         for (int i = 0; i < 16; ++i) // 16轮操作
-            BitsBlocks = BitsBlocks.substr(32, 32) + Xor32(funF(BitsBlocks.substr(32, 32), key.GetSubKey(flag, i)),
-                                                           BitsBlocks.substr(0, 32)); // 异或操作
+            BitsText = BitsText.substr(32, 32) + Xor32(funF(BitsText.substr(32, 32), key.GetSubKey(flag, i)),
+                                                       BitsText.substr(0, 32)); // 异或操作
     else //解密
         for (int i = 15; i >= 0; --i) // 加密操作的拟操作
-            BitsBlocks = Xor32(funF(BitsBlocks.substr(0, 32), key.GetSubKey(flag, i)), BitsBlocks.substr(32, 32)) +
-                         BitsBlocks.substr(0, 32); // 异或操作
+            BitsText = Xor32(funF(BitsText.substr(0, 32), key.GetSubKey(flag, i)), BitsText.substr(32, 32)) +
+                    BitsText.substr(0, 32); // 异或操作
 
-    BitsBlocks = Transform(BitsBlocks, Table_InverseIP, 64); // 转换为64位
+    BitsText = Transform(BitsText, Table_InverseIP, 64); // 转换为64位
 }
 
 string TripleDes::Transform(const string In, const char *Table, int len) { // 置换函数
@@ -88,31 +88,16 @@ string TripleDes::RestorePlaintext() { // 将二进制信息转化为字节
 }
 
 string TripleDes::Operation(Key key, string Text, bool flag) {
-    key.MakeSubKey();
     GetBitsText(Text);
 
     if (flag) {
-        for (int i = 0; i < BitsText.size(); i += 64) {
-            BitsBlocks = BitsText.substr(i, 64);
-
             DES(key, 0, ENCRYPT);
             DES(key, 1, !ENCRYPT);
             DES(key, 0, ENCRYPT);
-
-            BitsText = BitsText.substr(0, i) + BitsBlocks + BitsText.substr(i + 64);
-        }
-        cout << "ENCRYPT success!" << endl;
     } else {
-        for (int i = 0; i < BitsText.size(); i += 64) {
-            BitsBlocks = BitsText.substr(i, 64);
-
             DES(key, 0, DECRYPT);
             DES(key, 1, !DECRYPT);
             DES(key, 0, DECRYPT);
-
-            BitsText = BitsText.substr(0, i) + BitsBlocks + BitsText.substr(i + 64);
-        }
-        cout << "DECRYPT success!" << endl;
     }
     return RestorePlaintext();
 }

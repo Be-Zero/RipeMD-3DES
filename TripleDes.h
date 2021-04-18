@@ -5,7 +5,6 @@
 #ifndef SECURITYSYSTEM_TRIPLEDES_H
 #define SECURITYSYSTEM_TRIPLEDES_H
 
-#include <iostream>
 #include <string>
 #include <bitset>
 
@@ -23,8 +22,6 @@ using namespace std;
 class TripleDes {
 private:
     string BitsText; // 二进制明文
-
-    string BitsBlocks; // 存储块处理时的二进制密文
 
     const static bool ENCRYPT = true;
 

@@ -11,14 +11,19 @@ CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj: ../Key.cpp
 CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj: ../Key.h
 CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj: ../RipeMD_256.h
 
+CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../File_IO.h
+CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../Key.h
 CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../OPMode.cpp
 CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../OPMode.h
+CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../RipeMD_256.h
+CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../TripleDes.h
 
 CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj: ../RipeMD_256.cpp
 CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj: ../RipeMD_256.h
 
 CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../File_IO.h
 CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../Key.h
+CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../OPMode.h
 CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../RipeMD_256.h
 CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../Run.cpp
 CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../Run.h

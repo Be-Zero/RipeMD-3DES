@@ -26,10 +26,8 @@ private:
 
 public:
     File_IO(string In); // 构造函数
-    void Load_EN(); // 读取文件
-    void Save_EN(); // 存储文件
-    void Load_DE(); // 读取文件
-    void Save_DE(); // 存储文件
-    string StringToBits(string s); // 字符串转二进制串
-    void Operation(bool flag, Key key); // 运行
+    string Load_EN(); // 读取文件
+    void Save_EN(string In); // 存储文件
+    string Load_DE(); // 读取文件
+    void Save_DE(string In); // 存储文件
 };
