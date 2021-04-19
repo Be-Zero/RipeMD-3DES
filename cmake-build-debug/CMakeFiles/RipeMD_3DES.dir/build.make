@@ -56,102 +56,102 @@ include CMakeFiles/RipeMD_3DES.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/RipeMD_3DES.dir/flags.make
 
-CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj: ../Run.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Run.cpp.obj -c F:\RipeMD-3DES\Run.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj: ../Source/Run.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\Run.cpp.obj -c F:\RipeMD-3DES\Source\Run.cpp
 
-CMakeFiles/RipeMD_3DES.dir/Run.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Run.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Run.cpp > CMakeFiles\RipeMD_3DES.dir\Run.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\Run.cpp > CMakeFiles\RipeMD_3DES.dir\Source\Run.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/Run.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Run.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Run.cpp -o CMakeFiles\RipeMD_3DES.dir\Run.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\Run.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\Run.cpp.s
 
-CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj: ../Key.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Key.cpp.obj -c F:\RipeMD-3DES\Key.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj: ../Source/Key.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\Key.cpp.obj -c F:\RipeMD-3DES\Source\Key.cpp
 
-CMakeFiles/RipeMD_3DES.dir/Key.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Key.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Key.cpp > CMakeFiles\RipeMD_3DES.dir\Key.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\Key.cpp > CMakeFiles\RipeMD_3DES.dir\Source\Key.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/Key.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Key.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Key.cpp -o CMakeFiles\RipeMD_3DES.dir\Key.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\Key.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\Key.cpp.s
 
-CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj: ../TripleDes.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\TripleDes.cpp.obj -c F:\RipeMD-3DES\TripleDes.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj: ../Source/TripleDes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\TripleDes.cpp.obj -c F:\RipeMD-3DES\Source\TripleDes.cpp
 
-CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\TripleDes.cpp > CMakeFiles\RipeMD_3DES.dir\TripleDes.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\TripleDes.cpp > CMakeFiles\RipeMD_3DES.dir\Source\TripleDes.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\TripleDes.cpp -o CMakeFiles\RipeMD_3DES.dir\TripleDes.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\TripleDes.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\TripleDes.cpp.s
 
-CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj: ../File_IO.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\File_IO.cpp.obj -c F:\RipeMD-3DES\File_IO.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj: ../Source/File_IO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\File_IO.cpp.obj -c F:\RipeMD-3DES\Source\File_IO.cpp
 
-CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\File_IO.cpp > CMakeFiles\RipeMD_3DES.dir\File_IO.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\File_IO.cpp > CMakeFiles\RipeMD_3DES.dir\Source\File_IO.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\File_IO.cpp -o CMakeFiles\RipeMD_3DES.dir\File_IO.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\File_IO.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\File_IO.cpp.s
 
-CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj: ../RipeMD_256.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\RipeMD_256.cpp.obj -c F:\RipeMD-3DES\RipeMD_256.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj: ../Source/RipeMD_256.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\RipeMD_256.cpp.obj -c F:\RipeMD-3DES\Source\RipeMD_256.cpp
 
-CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\RipeMD_256.cpp > CMakeFiles\RipeMD_3DES.dir\RipeMD_256.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\RipeMD_256.cpp > CMakeFiles\RipeMD_3DES.dir\Source\RipeMD_256.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\RipeMD_256.cpp -o CMakeFiles\RipeMD_3DES.dir\RipeMD_256.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\RipeMD_256.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\RipeMD_256.cpp.s
 
-CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
-CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj: ../OPMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\OPMode.cpp.obj -c F:\RipeMD-3DES\OPMode.cpp
+CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj: CMakeFiles/RipeMD_3DES.dir/flags.make
+CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj: ../Source/OPMode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\RipeMD-3DES\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RipeMD_3DES.dir\Source\OPMode.cpp.obj -c F:\RipeMD-3DES\Source\OPMode.cpp
 
-CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.i"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\OPMode.cpp > CMakeFiles\RipeMD_3DES.dir\OPMode.cpp.i
+CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.i"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\RipeMD-3DES\Source\OPMode.cpp > CMakeFiles\RipeMD_3DES.dir\Source\OPMode.cpp.i
 
-CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.s"
-	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\OPMode.cpp -o CMakeFiles\RipeMD_3DES.dir\OPMode.cpp.s
+CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.s"
+	"E:\Jet Brains\MinGW\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\RipeMD-3DES\Source\OPMode.cpp -o CMakeFiles\RipeMD_3DES.dir\Source\OPMode.cpp.s
 
 # Object files for target RipeMD_3DES
 RipeMD_3DES_OBJECTS = \
-"CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj" \
-"CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj" \
-"CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj" \
-"CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj" \
-"CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj" \
-"CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj"
+"CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj" \
+"CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj" \
+"CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj" \
+"CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj" \
+"CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj" \
+"CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj"
 
 # External object files for target RipeMD_3DES
 RipeMD_3DES_EXTERNAL_OBJECTS =
 
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj
-RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj
+RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj
 RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/build.make
 RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/linklibs.rsp
 RipeMD_3DES.exe: CMakeFiles/RipeMD_3DES.dir/objects1.rsp

@@ -80,40 +80,40 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="F:/RipeMD-3DES/File_IO.cpp">
+		<Unit filename="F:/RipeMD-3DES/Header/File_IO.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/File_IO.h">
+		<Unit filename="F:/RipeMD-3DES/Header/Key.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/Key.cpp">
+		<Unit filename="F:/RipeMD-3DES/Header/OPMode.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/Key.h">
+		<Unit filename="F:/RipeMD-3DES/Header/RipeMD_256.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/OPMode.cpp">
+		<Unit filename="F:/RipeMD-3DES/Header/Run.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/OPMode.h">
+		<Unit filename="F:/RipeMD-3DES/Header/TripleDes.h">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/RipeMD_256.cpp">
+		<Unit filename="F:/RipeMD-3DES/Source/File_IO.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/RipeMD_256.h">
+		<Unit filename="F:/RipeMD-3DES/Source/Key.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/Run.cpp">
+		<Unit filename="F:/RipeMD-3DES/Source/OPMode.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/Run.h">
+		<Unit filename="F:/RipeMD-3DES/Source/RipeMD_256.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/TripleDes.cpp">
+		<Unit filename="F:/RipeMD-3DES/Source/Run.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
-		<Unit filename="F:/RipeMD-3DES/TripleDes.h">
+		<Unit filename="F:/RipeMD-3DES/Source/TripleDes.cpp">
 			<Option target="RipeMD_3DES"/>
 		</Unit>
 		<Unit filename="F:/RipeMD-3DES/CMakeLists.txt">

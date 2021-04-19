@@ -2,7 +2,7 @@
 // Created by 12036 on 2021/4/17.
 //
 
-#include "OPMode.h"
+#include "../Header/OPMode.h"
 
 OPMode::OPMode(string Path, string Key, bool E_D) {
     Plaintext = "";
@@ -44,12 +44,11 @@ void OPMode::CBC() {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(Plaintext.substr(i, 8));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(res.substr(i-8, 8)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(res.substr(i - 8, 8)));
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
             }
             res += des.Operation(key, tmp, 1);
@@ -59,12 +58,11 @@ void OPMode::CBC() {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(des.Operation(key, Plaintext.substr(i, 8), 0));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(Plaintext.substr(i-8, 8)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(Plaintext.substr(i - 8, 8)));
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
             }
             res += tmp;
@@ -83,12 +81,11 @@ void OPMode::CFB() {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(Plaintext.substr(i, 8));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(des.Operation(key, res.substr(i-8, 8), 1)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(des.Operation(key, res.substr(i - 8, 8), 1)));
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
             }
             res += tmp;
@@ -98,12 +95,11 @@ void OPMode::CFB() {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(Plaintext.substr(i, 8));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(des.Operation(key, Plaintext.substr(i-8, 8), 1)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(des.Operation(key, Plaintext.substr(i - 8, 8), 1)));
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
             }
             res += tmp;
@@ -186,12 +182,12 @@ void OPMode::PCBC() {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(Plaintext.substr(i, 8));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(res.substr(i-8, 8))), ep3(StringToBits(Plaintext.substr(i-8, 8)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(res.substr(i - 8, 8))), ep3(
+                        StringToBits(Plaintext.substr(i - 8, 8)));
                 tmp = RestorePlaintext((ep1 ^ ep2 ^ ep3).to_string());
             }
             res += des.Operation(key, tmp, 1);
@@ -201,12 +197,12 @@ void OPMode::PCBC() {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 8) {
             string tmp = StringToBits(des.Operation(key, Plaintext.substr(i, 8), 0));
-            if(i == 0) {
+            if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = RestorePlaintext((ep1 ^ ep2).to_string());
-            }
-            else {
-                bitset<64> ep1(tmp), ep2(StringToBits(Plaintext.substr(i-8, 8))), ep3(StringToBits(res.substr(i-8, 8)));
+            } else {
+                bitset<64> ep1(tmp), ep2(StringToBits(Plaintext.substr(i - 8, 8))), ep3(
+                        StringToBits(res.substr(i - 8, 8)));
                 tmp = RestorePlaintext((ep1 ^ ep2 ^ ep3).to_string());
             }
             res += tmp;
@@ -237,14 +233,14 @@ string OPMode::RestorePlaintext(string s) { // 将二进制信息转化为字节
     return res;
 }
 
-bitset<64> OPMode::OpPlus (bitset<64> a, bitset<64> b) {
-    bitset<64> sum=a;
-    bitset<64> carry=b;
+bitset<64> OPMode::OpPlus(bitset<64> a, bitset<64> b) {
+    bitset<64> sum = a;
+    bitset<64> carry = b;
     bitset<64> tmps;
-    while(carry.any()) {
-        tmps=sum;
-        sum=tmps^carry; // 求非进位结果
-        carry=(tmps&carry)<<1; // 求进位结果（两个相加等于最终结果）
+    while (carry.any()) {
+        tmps = sum;
+        sum = tmps ^ carry; // 求非进位结果
+        carry = (tmps & carry) << 1; // 求进位结果（两个相加等于最终结果）
     }
     return sum; // 进位结果等于0时，结束。
 }

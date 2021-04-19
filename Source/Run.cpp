@@ -2,7 +2,7 @@
 // Created by Bezero on 2021/4/12.
 //
 
-#include "Run.h"
+/*#include "../Header/Run.h"
 
 int main() {
     string EnFilePath = "../test/test.txt";
@@ -13,4 +13,4 @@ int main() {
     OPMode ep2(DeFilePath, UserKey, 0);
     ep2.PCBC();
     return 0;
-}
+}*/

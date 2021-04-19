@@ -2,7 +2,7 @@
 // Created by BeZero on 2021/4/12.
 //
 
-#include "TripleDes.h"
+#include "../Header/TripleDes.h"
 
 void TripleDes::GetBitsText(string T) {
     BitsText = StringToBits(T);

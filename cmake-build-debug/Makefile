@@ -122,167 +122,167 @@ RipeMD_3DES/fast:
 	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/build
 .PHONY : RipeMD_3DES/fast
 
-File_IO.obj: File_IO.cpp.obj
+Source/File_IO.obj: Source/File_IO.cpp.obj
 
-.PHONY : File_IO.obj
-
-# target to build an object file
-File_IO.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.obj
-.PHONY : File_IO.cpp.obj
-
-File_IO.i: File_IO.cpp.i
-
-.PHONY : File_IO.i
-
-# target to preprocess a source file
-File_IO.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.i
-.PHONY : File_IO.cpp.i
-
-File_IO.s: File_IO.cpp.s
-
-.PHONY : File_IO.s
-
-# target to generate assembly for a file
-File_IO.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/File_IO.cpp.s
-.PHONY : File_IO.cpp.s
-
-Key.obj: Key.cpp.obj
-
-.PHONY : Key.obj
+.PHONY : Source/File_IO.obj
 
 # target to build an object file
-Key.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Key.cpp.obj
-.PHONY : Key.cpp.obj
+Source/File_IO.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj
+.PHONY : Source/File_IO.cpp.obj
 
-Key.i: Key.cpp.i
+Source/File_IO.i: Source/File_IO.cpp.i
 
-.PHONY : Key.i
+.PHONY : Source/File_IO.i
 
 # target to preprocess a source file
-Key.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Key.cpp.i
-.PHONY : Key.cpp.i
+Source/File_IO.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.i
+.PHONY : Source/File_IO.cpp.i
 
-Key.s: Key.cpp.s
+Source/File_IO.s: Source/File_IO.cpp.s
 
-.PHONY : Key.s
+.PHONY : Source/File_IO.s
 
 # target to generate assembly for a file
-Key.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Key.cpp.s
-.PHONY : Key.cpp.s
+Source/File_IO.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.s
+.PHONY : Source/File_IO.cpp.s
 
-OPMode.obj: OPMode.cpp.obj
+Source/Key.obj: Source/Key.cpp.obj
 
-.PHONY : OPMode.obj
+.PHONY : Source/Key.obj
 
 # target to build an object file
-OPMode.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.obj
-.PHONY : OPMode.cpp.obj
+Source/Key.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.obj
+.PHONY : Source/Key.cpp.obj
 
-OPMode.i: OPMode.cpp.i
+Source/Key.i: Source/Key.cpp.i
 
-.PHONY : OPMode.i
+.PHONY : Source/Key.i
 
 # target to preprocess a source file
-OPMode.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.i
-.PHONY : OPMode.cpp.i
+Source/Key.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.i
+.PHONY : Source/Key.cpp.i
 
-OPMode.s: OPMode.cpp.s
+Source/Key.s: Source/Key.cpp.s
 
-.PHONY : OPMode.s
+.PHONY : Source/Key.s
 
 # target to generate assembly for a file
-OPMode.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/OPMode.cpp.s
-.PHONY : OPMode.cpp.s
+Source/Key.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Key.cpp.s
+.PHONY : Source/Key.cpp.s
 
-RipeMD_256.obj: RipeMD_256.cpp.obj
+Source/OPMode.obj: Source/OPMode.cpp.obj
 
-.PHONY : RipeMD_256.obj
+.PHONY : Source/OPMode.obj
 
 # target to build an object file
-RipeMD_256.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.obj
-.PHONY : RipeMD_256.cpp.obj
+Source/OPMode.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj
+.PHONY : Source/OPMode.cpp.obj
 
-RipeMD_256.i: RipeMD_256.cpp.i
+Source/OPMode.i: Source/OPMode.cpp.i
 
-.PHONY : RipeMD_256.i
+.PHONY : Source/OPMode.i
 
 # target to preprocess a source file
-RipeMD_256.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.i
-.PHONY : RipeMD_256.cpp.i
+Source/OPMode.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.i
+.PHONY : Source/OPMode.cpp.i
 
-RipeMD_256.s: RipeMD_256.cpp.s
+Source/OPMode.s: Source/OPMode.cpp.s
 
-.PHONY : RipeMD_256.s
+.PHONY : Source/OPMode.s
 
 # target to generate assembly for a file
-RipeMD_256.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/RipeMD_256.cpp.s
-.PHONY : RipeMD_256.cpp.s
+Source/OPMode.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.s
+.PHONY : Source/OPMode.cpp.s
 
-Run.obj: Run.cpp.obj
+Source/RipeMD_256.obj: Source/RipeMD_256.cpp.obj
 
-.PHONY : Run.obj
+.PHONY : Source/RipeMD_256.obj
 
 # target to build an object file
-Run.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Run.cpp.obj
-.PHONY : Run.cpp.obj
+Source/RipeMD_256.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.obj
+.PHONY : Source/RipeMD_256.cpp.obj
 
-Run.i: Run.cpp.i
+Source/RipeMD_256.i: Source/RipeMD_256.cpp.i
 
-.PHONY : Run.i
+.PHONY : Source/RipeMD_256.i
 
 # target to preprocess a source file
-Run.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Run.cpp.i
-.PHONY : Run.cpp.i
+Source/RipeMD_256.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.i
+.PHONY : Source/RipeMD_256.cpp.i
 
-Run.s: Run.cpp.s
+Source/RipeMD_256.s: Source/RipeMD_256.cpp.s
 
-.PHONY : Run.s
+.PHONY : Source/RipeMD_256.s
 
 # target to generate assembly for a file
-Run.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Run.cpp.s
-.PHONY : Run.cpp.s
+Source/RipeMD_256.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/RipeMD_256.cpp.s
+.PHONY : Source/RipeMD_256.cpp.s
 
-TripleDes.obj: TripleDes.cpp.obj
+Source/Run.obj: Source/Run.cpp.obj
 
-.PHONY : TripleDes.obj
+.PHONY : Source/Run.obj
 
 # target to build an object file
-TripleDes.cpp.obj:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.obj
-.PHONY : TripleDes.cpp.obj
+Source/Run.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.obj
+.PHONY : Source/Run.cpp.obj
 
-TripleDes.i: TripleDes.cpp.i
+Source/Run.i: Source/Run.cpp.i
 
-.PHONY : TripleDes.i
+.PHONY : Source/Run.i
 
 # target to preprocess a source file
-TripleDes.cpp.i:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.i
-.PHONY : TripleDes.cpp.i
+Source/Run.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.i
+.PHONY : Source/Run.cpp.i
 
-TripleDes.s: TripleDes.cpp.s
+Source/Run.s: Source/Run.cpp.s
 
-.PHONY : TripleDes.s
+.PHONY : Source/Run.s
 
 # target to generate assembly for a file
-TripleDes.cpp.s:
-	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/TripleDes.cpp.s
-.PHONY : TripleDes.cpp.s
+Source/Run.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/Run.cpp.s
+.PHONY : Source/Run.cpp.s
+
+Source/TripleDes.obj: Source/TripleDes.cpp.obj
+
+.PHONY : Source/TripleDes.obj
+
+# target to build an object file
+Source/TripleDes.cpp.obj:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.obj
+.PHONY : Source/TripleDes.cpp.obj
+
+Source/TripleDes.i: Source/TripleDes.cpp.i
+
+.PHONY : Source/TripleDes.i
+
+# target to preprocess a source file
+Source/TripleDes.cpp.i:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.i
+.PHONY : Source/TripleDes.cpp.i
+
+Source/TripleDes.s: Source/TripleDes.cpp.s
+
+.PHONY : Source/TripleDes.s
+
+# target to generate assembly for a file
+Source/TripleDes.cpp.s:
+	$(MAKE) -f CMakeFiles\RipeMD_3DES.dir\build.make CMakeFiles/RipeMD_3DES.dir/Source/TripleDes.cpp.s
+.PHONY : Source/TripleDes.cpp.s
 
 # Help Target
 help:
@@ -293,24 +293,24 @@ help:
 	@echo ... RipeMD_3DES
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... File_IO.obj
-	@echo ... File_IO.i
-	@echo ... File_IO.s
-	@echo ... Key.obj
-	@echo ... Key.i
-	@echo ... Key.s
-	@echo ... OPMode.obj
-	@echo ... OPMode.i
-	@echo ... OPMode.s
-	@echo ... RipeMD_256.obj
-	@echo ... RipeMD_256.i
-	@echo ... RipeMD_256.s
-	@echo ... Run.obj
-	@echo ... Run.i
-	@echo ... Run.s
-	@echo ... TripleDes.obj
-	@echo ... TripleDes.i
-	@echo ... TripleDes.s
+	@echo ... Source/File_IO.obj
+	@echo ... Source/File_IO.i
+	@echo ... Source/File_IO.s
+	@echo ... Source/Key.obj
+	@echo ... Source/Key.i
+	@echo ... Source/Key.s
+	@echo ... Source/OPMode.obj
+	@echo ... Source/OPMode.i
+	@echo ... Source/OPMode.s
+	@echo ... Source/RipeMD_256.obj
+	@echo ... Source/RipeMD_256.i
+	@echo ... Source/RipeMD_256.s
+	@echo ... Source/Run.obj
+	@echo ... Source/Run.i
+	@echo ... Source/Run.s
+	@echo ... Source/TripleDes.obj
+	@echo ... Source/TripleDes.i
+	@echo ... Source/TripleDes.s
 .PHONY : help
 
 

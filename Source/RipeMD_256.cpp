@@ -2,7 +2,7 @@
 // Created by 12036 on 2021/4/16.
 //
 
-#include "RipeMD_256.h"
+#include "../Header/RipeMD_256.h"
 
 void RipeMD_256::MDinit() { // 初始化
     MDbuf[0] = 0x67452301UL;
