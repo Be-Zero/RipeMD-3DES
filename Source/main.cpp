@@ -1,3 +1,4 @@
+/*
 #include "../Header/system_ui.h"
 
 #include <QApplication>
@@ -9,3 +10,4 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+*/

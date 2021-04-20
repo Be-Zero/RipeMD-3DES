@@ -25,7 +25,7 @@ private:
 public:
     void MDinit(); // 初始化
 
-    ulong BytesToUlong(byte *strptr); // 转换
+    ulong BytesToUlong(unsigned char *strptr); // 转换
 
     void compress(ulong *X);
 
@@ -55,7 +55,7 @@ public:
 
     void III(ulong &a, ulong b, ulong c, ulong d, ulong x, ulong s);
 
-    void MDfinish(byte *strptr, ulong lswlen, ulong mswlen);
+    void MDfinish(unsigned char *strptr, ulong lswlen, ulong mswlen);
 
-    string RMD(byte *message);
+    string RMD(unsigned char *message);
 };

@@ -5,7 +5,7 @@
 #include "../Header/TripleDes.h"
 
 void TripleDes::GetBitsText(string T) {
-    BitsText = StringToBits(T);
+    BitsText = T;
 }
 
 void TripleDes::DES(Key key, int flag, bool Type) {
@@ -66,27 +66,6 @@ string TripleDes::funS(const string Tmp) { // S盒置换
     return ans;
 }
 
-string TripleDes::StringToBits(string s) { // 字符串转二进制串
-    string ans = "";
-    for (int i = 0; i < s.size(); ++i) {
-        bitset<8> tmp = s[i];
-        ans += tmp.to_string();
-    }
-    return ans;
-}
-
-string TripleDes::RestorePlaintext() { // 将二进制信息转化为字节
-    string res = "";
-
-    for (int i = 0; i < BitsText.size(); i += 8) {
-        bitset<8> tmp(BitsText.substr(i, 8));
-        char ans = tmp.to_ulong();
-        res += "0";
-        res[res.size() - 1] = ans;
-    }
-    return res;
-}
-
 string TripleDes::Operation(Key key, string Text, bool flag) {
     GetBitsText(Text);
 
@@ -99,5 +78,5 @@ string TripleDes::Operation(Key key, string Text, bool flag) {
             DES(key, 1, !DECRYPT);
             DES(key, 0, DECRYPT);
     }
-    return RestorePlaintext();
+    return BitsText;
 }

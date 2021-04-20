@@ -43,7 +43,5 @@ public:
 
     string StringToBits(string s);
 
-    string RestorePlaintext(string s);
-
     bitset<64> OpPlus (bitset<64> a, bitset<64> b);
 };

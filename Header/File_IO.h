@@ -21,8 +21,9 @@ private:
     string FilePath; // 文件路径
     int FileSize; // 文件大小
     int BlockNum; // 文件块数
-    string Plaintext; // 存储明文
+    char *Plaintext; // 存储明文
     int Supple; // 末块补充长度
+    string BitStr;
 
 public:
     File_IO(string In); // 构造函数
@@ -30,4 +31,6 @@ public:
     void Save_EN(string In); // 存储文件
     string Load_DE(); // 读取文件
     void Save_DE(string In); // 存储文件
+    string StringToBits(int size); // 字符串转二进制串
+    void RestorePlaintext(); // 将二进制信息转化为字节
 };

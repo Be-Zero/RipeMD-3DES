@@ -15,7 +15,7 @@ void RipeMD_256::MDinit() { // 初始化
     MDbuf[7] = 0x01234567UL;
 }
 
-ulong RipeMD_256::BytesToUlong(byte *strptr) { // 每次处理四个字节，字节转ulong
+ulong RipeMD_256::BytesToUlong(unsigned char *strptr) { // 每次处理四个字节，字节转ulong
     return ((ulong) *(strptr + 3) << 24) | ((ulong) *(strptr + 2) << 16) | ((ulong) *(strptr + 1) << 8) |
             ((ulong) *(strptr));
 }
@@ -256,7 +256,7 @@ void RipeMD_256::compress(ulong *X) { // 压缩函数
     MDbuf[7] += ddd;
 }
 
-void RipeMD_256::MDfinish(byte *message, ulong lenth, ulong mswlen) { // 结束处理部分
+void RipeMD_256::MDfinish(unsigned char *message, ulong lenth, ulong mswlen) { // 结束处理部分
     // mswlen = 0
     ulong X[16]; // message words
 
@@ -281,8 +281,8 @@ void RipeMD_256::MDfinish(byte *message, ulong lenth, ulong mswlen) { // 结束�
     compress(X); // 压缩函数
 }
 
-string RipeMD_256::RMD(byte *message) { // 运行函数
-    byte hashcode[33]; // 存储最终结果
+string RipeMD_256::RMD(unsigned char *message) { // 运行函数
+    unsigned char hashcode[33]; // 存储最终结果
     ulong X[16]; // 当前16字的块
 
     MDinit(); // 初始化
