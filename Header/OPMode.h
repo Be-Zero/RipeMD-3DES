@@ -44,4 +44,6 @@ public:
     string StringToBits(string s);
 
     bitset<64> OpPlus (bitset<64> a, bitset<64> b);
+
+    void Xor(char *left, char *right);
 };

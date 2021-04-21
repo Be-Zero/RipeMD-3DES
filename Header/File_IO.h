@@ -28,9 +28,9 @@ private:
 public:
     File_IO(string In); // 构造函数
     string Load_EN(); // 读取文件
-    void Save_EN(string In); // 存储文件
+    void Save_EN(string &In); // 存储文件
     string Load_DE(); // 读取文件
-    void Save_DE(string In); // 存储文件
+    void Save_DE(string &In); // 存储文件
     string StringToBits(int size); // 字符串转二进制串
     void RestorePlaintext(); // 将二进制信息转化为字节
 };

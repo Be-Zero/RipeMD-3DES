@@ -9,8 +9,8 @@ int main() {
     string DeFilePath = "../test/test_En.png";
     string UserKey = "qth";
     OPMode ep1(EnFilePath, UserKey, 1);
-    ep1.ECB();
+    ep1.CBC();
     OPMode ep2(DeFilePath, UserKey, 0);
-    ep2.ECB();
+    ep2.CBC();
     return 0;
 }

@@ -1,5 +1,5 @@
 //
-// Created by 12036 on 2021/4/14.
+// Created by BeZero on 2021/4/14.
 //
 
 #include "../Header/File_IO.h"
@@ -30,7 +30,7 @@ string File_IO::Load_EN() {
     return BitStr;
 }
 
-void File_IO::Save_EN(string In) {
+void File_IO::Save_EN(string &In) {
     BitStr = In;
 
     RestorePlaintext();
@@ -72,7 +72,7 @@ string File_IO::Load_DE() {
     return BitStr;
 }
 
-void File_IO::Save_DE(string In) {
+void File_IO::Save_DE(string &In) {
     BitStr = In;
 
     RestorePlaintext();

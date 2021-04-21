@@ -21,13 +21,13 @@ void OPMode::ECB() {
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < Plaintext.size(); i += 64) {
-            res += des.Operation(key, Plaintext.substr(i, 64), 1);
+            res += des.Operation(key, &Plaintext[i], 1);
         }
         file_io.Save_EN(res);
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 64) {
-            res += des.Operation(key, Plaintext.substr(i, 64), 0);
+            res += des.Operation(key, &Plaintext[i], 0);
         }
         file_io.Save_DE(res);
     }
@@ -38,32 +38,28 @@ void OPMode::CBC() {
     Key key(UserKey);
     TripleDes des;
     File_IO file_io(FilaPath);
-    string IV = StringToBits(InitialVector);
+    string mmp = StringToBits(InitialVector);
+    char *IV = &mmp[0];
 
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = Plaintext.substr(i, 64);
             if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
+                Xor(&Plaintext[i], IV);
             } else {
-                bitset<64> ep1(tmp), ep2(res.substr(i - 64, 64));
-                tmp = (ep1 ^ ep2).to_string();
+                Xor(&Plaintext[i], &res[i-64]);
             }
-            res += des.Operation(key, tmp, 1);
+            res += des.Operation(key, &Plaintext[i], 1);
         }
         file_io.Save_EN(res);
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = des.Operation(key, Plaintext.substr(i, 64), 0);
+            string tmp = des.Operation(key, &Plaintext[i], 0);
             if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
+                Xor(&tmp[0], IV);
             } else {
-                bitset<64> ep1(tmp), ep2(Plaintext.substr(i - 64, 64));
-                tmp = (ep1 ^ ep2).to_string();
+                Xor(&tmp[0], &Plaintext[i-64]);
             }
             res += tmp;
         }
@@ -87,7 +83,8 @@ void OPMode::CFB() {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = (ep1 ^ ep2).to_string();
             } else {
-                bitset<64> ep1(tmp), ep2(des.Operation(key, res.substr(i - 64, 64), 1));
+                string tmp = res.substr(i - 64, 64);
+                bitset<64> ep1(tmp), ep2(des.Operation(key, tmp, 1));
                 tmp = (ep1 ^ ep2).to_string();
             }
             res += tmp;
@@ -101,7 +98,8 @@ void OPMode::CFB() {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = (ep1 ^ ep2).to_string();
             } else {
-                bitset<64> ep1(tmp), ep2(des.Operation(key, Plaintext.substr(i - 64, 64), 1));
+                string tmp = Plaintext.substr(i - 64, 64);
+                bitset<64> ep1(tmp), ep2(des.Operation(key, tmp, 1));
                 tmp = (ep1 ^ ep2).to_string();
             }
             res += tmp;
@@ -198,7 +196,8 @@ void OPMode::PCBC() {
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = des.Operation(key, Plaintext.substr(i, 64), 0);
+            string t = Plaintext.substr(i, 64);
+            string tmp = des.Operation(key, tmp, 0);
             if (i == 0) {
                 bitset<64> ep1(tmp), ep2(IV);
                 tmp = (ep1 ^ ep2).to_string();
@@ -233,4 +232,11 @@ bitset<64> OPMode::OpPlus(bitset<64> a, bitset<64> b) {
         carry = (tmps & carry) << 1; // 求进位结果（两个相加等于最终结果）
     }
     return sum; // 进位结果等于0时，结束。
+}
+
+void OPMode::Xor(char *left, char *right) { // 异或操作
+    for(int i=0;i<64;++i)
+        if(left[i]==right[i])
+            left[i]='0';
+        else left[i]='1';
 }

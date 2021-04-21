@@ -96,19 +96,17 @@ private:
             2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25
     };
 public:
-    void GetBitsText(string T); // 获取明文
+    void GetBitsText(char *T); // 获取明文
 
-    string Transform(const string In, const char *Table, int len); // 将64位密钥压缩位56位
+    void Transform(string &In, const char *Table, int len); // 将64位密钥压缩位56位
 
     void DES(Key key, int flag, bool Type); // Des
 
-    string Xor32(string left, string right); // 异或操作
-
-    string Xor48(string left, string right); // 异或操作
+    string Xor(string left, string right, int len); // 异或操作
 
     string funF(string T, string key); // F函数
 
-    string funS(const string Tmp); // S盒置换
+    string funS(const string &Tmp); // S盒置换
 
-    string Operation(Key key, string Text, bool flag);
+    string Operation(Key key, char *p, bool flag);
 };

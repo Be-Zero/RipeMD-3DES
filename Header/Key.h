@@ -19,8 +19,6 @@ private:
 
     string UserBitKey; // 用户密钥经过RipeMD处理后的结果
 
-    string InitialReplacement1, InitialReplacement2; // 初始置换后的结果
-
     string SubKey[2][16]; // 轮密钥
 
     constexpr static char Table_PC1[56] = { // 密钥初始置换表
@@ -41,18 +39,16 @@ private:
             44, 49, 39, 56, 34, 53, 46, 42, 50, 36, 29, 32
     };
 public:
-    Key(string In); // 构造函数
+    Key(string &In); // 构造函数
 
     void RipeMD_process(); // TODO RipeMD
 
-    string Transform(const string In, const char *Table, int len); // 将64位密钥压缩位56位
+    string Transform(const string &In, const char *Table, int len); // 将64位密钥压缩位56位
 
     void MakeSubKey(); // 生成子密钥
 
-    string MoveLeft(string T, int flag); // 循环移位
+    void MoveLeft(string &T, int flag); // 循环移位
 
     string GetSubKey(int num, int round); // 获取子密钥
-
-    string StringToBits(string s); // 字符串转二进制串
 };
 
