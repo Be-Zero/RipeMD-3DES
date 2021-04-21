@@ -12,17 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d25c488-e6b1-4945-bf45-dd68e24c242e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Header/File_IO.h" beforeDir="false" afterPath="$PROJECT_DIR$/Header/File_IO.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Header/OPMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Header/OPMode.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Header/TripleDes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Header/TripleDes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/File_IO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/File_IO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/OPMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/OPMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Run.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Run.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/TripleDes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/TripleDes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RipeMD_3DES.dir/Source/File_IO.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RipeMD_3DES.dir/Source/OPMode.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_De.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_De.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_En.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_En.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Header/TripleDes.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="110" column="9" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
+            <state relative-caret-position="536">
+              <caret line="55" column="65" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="55" selection-end-column="65" />
               <folding>
                 <element signature="e#113#130#0" expanded="true" />
               </folding>
@@ -52,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Source/TripleDes.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+            <state relative-caret-position="416">
+              <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -162,7 +153,7 @@
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="974" />
@@ -252,12 +243,12 @@
       <workItem from="1618815202200" duration="9789000" />
       <workItem from="1618839064431" duration="19869000" />
       <workItem from="1618907694524" duration="6349000" />
-      <workItem from="1618971159090" duration="11947000" />
+      <workItem from="1618971159090" duration="17335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109640000" />
+    <option name="totallyTimeSpent" value="115028000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -393,16 +384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Header/TripleDes.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="110" column="9" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
-          <folding>
-            <element signature="e#113#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/File_IO.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
@@ -417,10 +398,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Header/TripleDes.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="55" column="65" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="55" selection-end-column="65" />
+          <folding>
+            <element signature="e#113#130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Source/TripleDes.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+        <state relative-caret-position="416">
+          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
         </state>
       </provider>
     </entry>

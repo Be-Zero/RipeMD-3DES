@@ -5,66 +5,86 @@
 #include "../Header/TripleDes.h"
 
 void TripleDes::GetBitsText(char *T) {
-    char *t = new char[64];
-    strncpy(t, T, 64);
-    BitsText = t;
+    BitsText = new char[64];
+    strncpy(BitsText, T, 64);
 }
 
 void TripleDes::DES(Key key, int flag, bool Type) {
     Transform(BitsText, Table_IP, 64); // 将明文转换为64位
 
     if (Type == ENCRYPT) //加密
-        for (int i = 0; i < 16; ++i)  // 16轮操作
-            BitsText = BitsText.substr(32, 32) + Xor(funF(BitsText.substr(32, 32), key.GetSubKey(flag, i)),
-                                                     BitsText.substr(0, 32), 32); // 异或操作
+        for (int i = 0; i < 16; ++i) {// 16轮操作
+            char *In = new char[48];
+            strncpy(In, BitsText + 32, 32);
+            funF(In, BitsText + 32, key.GetSubKey(flag, i));
+            Xor(In, In, BitsText, 32);
+            strncpy(BitsText, BitsText + 32, 32);
+            strncpy(BitsText + 32, In, 32);
+            delete In;
+            In = NULL;
+        }
     else //解密
-        for (int i = 15; i >= 0; --i) // 加密操作的拟操作
-            BitsText = Xor(funF(BitsText.substr(0, 32), key.GetSubKey(flag, i)), BitsText.substr(32, 32), 32) +
-                    BitsText.substr(0, 32); // 异或操作
-
+        for (int i = 15; i >= 0; --i) {// 加密操作的拟操作
+            char *In = new char[48];
+            strncpy(In, BitsText, 32);
+            funF(In, BitsText, key.GetSubKey(flag, i));
+            Xor(In, In, BitsText + 32, 32);
+            strncpy(BitsText + 32, BitsText, 32);
+            strncpy(BitsText, In, 32);
+            delete In;
+            In = NULL;
+        }
     Transform(BitsText, Table_InverseIP, 64); // 转换为64位
 }
 
-void TripleDes::Transform(string &In, const char *Table, int len) { // 置换函数
-    string Out = "0000000000000000000000000000000000000000000000000000000000000000";
-
+void TripleDes::Transform(char *In, const char *Table, int len) { // 置换函数
+    char *Out = new char[len];
     for (int i = 0; i < len; ++i)
         Out[i] = In[Table[i] - 1];
-
-    In = Out.substr(0, len);
+    strncpy(In, Out, len);
+    delete Out;
+    Out = NULL;
 }
 
-string TripleDes::Xor(string left, string right, int len) { // 异或操作
-    string res=left;
+void TripleDes::Xor(char *In, char *left, string right, int len) { // 异或操作
     for(int i=0;i<len;++i)
         if(left[i]==right[i])
-            res[i]='0';
-        else res[i]='1';
-    return res;
+            In[i]='0';
+        else In[i]='1';
 }
 
-string TripleDes::funF(string T, string key) { // F函数
-    string Tmp = T;
-    Transform(Tmp, Table_E, 48); // 转化为48位
-    Tmp = Xor(Tmp, key, 48); // 异或操作
-    Tmp = funS(Tmp); // S盒
-    Transform(Tmp, Table_P, 32); // 转化为32位
-    return  Tmp;
+void TripleDes::funF(char *In, char *T, string key) { // F函数
+    Transform(In, Table_E, 48); // 转化为48位
+    Xor(In, In, key, 48); // 异或操作
+    funS(In); // S盒
+    Transform(In, Table_P, 32); // 转化为32位
 }
 
-string TripleDes::funS(const string &Tmp) { // S盒置换
-    string ans = "";
+void TripleDes::funS(char *In) { // S盒置换
+    char *ans = new char[32];
     for (int i = 0; i < 8; ++i) {
-        string flag = Tmp.substr(i * 6, 6);
+        char *flag = In + i*6;
 
-        bitset<2> row(flag.substr(0, 1) + flag.substr(5, 1));
-        bitset<4> column(flag.substr(1, 4));
+        int row=0, column=0;
+        if(flag[0]=='1')
+            row +=2;
+        if(flag[5]=='1')
+            row++;
+        if(flag[1]=='1')
+            column+=8;
+        if(flag[2]=='1')
+            column+=4;
+        if(flag[3]=='1')
+            column+=2;
+        if(flag[4]=='1')
+            column++;
 
-        column = Box_S[i][row.to_ulong()][column.to_ulong()];
-        ans += column.to_string();
-    }
-
-    return ans;
+        bitset<4> tmp = Box_S[i][row][column];
+        strncpy(ans + i * 4, tmp.to_string().c_str(), 4);
+}
+    strncpy(In, ans, 32);
+    delete ans;
+    ans = NULL;
 }
 
 char* TripleDes::Operation(Key key, char *T, bool flag) {
@@ -79,5 +99,5 @@ char* TripleDes::Operation(Key key, char *T, bool flag) {
             DES(key, 1, !DECRYPT);
             DES(key, 0, DECRYPT);
     }
-    return &BitsText[0];
+    return BitsText;
 }

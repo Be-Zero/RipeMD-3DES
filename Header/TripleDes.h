@@ -21,7 +21,7 @@ using namespace std;
 
 class TripleDes {
 private:
-    string BitsText; // 二进制明文
+    char *BitsText; // 二进制明文
 
     const static bool ENCRYPT = true;
 
@@ -98,15 +98,15 @@ private:
 public:
     void GetBitsText(char *T); // 获取明文
 
-    void Transform(string &In, const char *Table, int len); // 将64位密钥压缩位56位
+    void Transform(char *In, const char *Table, int len); // 将64位密钥压缩位56位
 
     void DES(Key key, int flag, bool Type); // Des
 
-    string Xor(string left, string right, int len); // 异或操作
+    void Xor(char *In, char *left, string right, int len); // 异或操作
 
-    string funF(string T, string key); // F函数
+    void funF(char *In, char *T, string key); // F函数
 
-    string funS(const string &Tmp); // S盒置换
+    void funS(char *Tmp); // S盒置换
 
     char* Operation(Key key, char *p, bool flag);
 };
