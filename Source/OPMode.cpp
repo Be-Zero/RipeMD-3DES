@@ -5,8 +5,7 @@
 #include "../Header/OPMode.h"
 
 OPMode::OPMode(string Path, string Key, bool E_D) {
-    Plaintext = "";
-    res = "";
+    res = NULL;
     FilaPath = Path;
     UserKey = Key;
     flag = E_D;
@@ -20,19 +19,28 @@ void OPMode::ECB() {
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            res += des.Operation(key, &Plaintext[i], 1);
+        res = new char[file_io.GetEnFileSize()];
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 64) {
+            strncpy(res + i, des.Operation(key, Plaintext + i, 1), 64);
         }
+        Plaintext = NULL;
         file_io.Save_EN(res);
+        delete res;
+        res = NULL;
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            res += des.Operation(key, &Plaintext[i], 0);
+        res = new char[file_io.GetDeFileSize()];
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 64) {
+            strncpy(res + i, des.Operation(key, Plaintext + i, 0), 64);
         }
+        Plaintext = NULL;
         file_io.Save_DE(res);
+        delete res;
+        res = NULL;
     }
     cout << "finished!" << endl;
 }
+/*
 
 void OPMode::CBC() {
     Key key(UserKey);
@@ -239,4 +247,4 @@ void OPMode::Xor(char *left, char *right) { // 异或操作
         if(left[i]==right[i])
             left[i]='0';
         else left[i]='1';
-}
+}*/

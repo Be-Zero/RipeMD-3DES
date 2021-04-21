@@ -5,19 +5,18 @@
 #include "../Header/TripleDes.h"
 
 void TripleDes::GetBitsText(char *T) {
-    char *s = new char[65];
-    strncpy(s, T, 64);
-    s[64]='/0';
-    BitsText = s;
+    char *t = new char[64];
+    strncpy(t, T, 64);
+    BitsText = t;
 }
 
 void TripleDes::DES(Key key, int flag, bool Type) {
     Transform(BitsText, Table_IP, 64); // 将明文转换为64位
 
     if (Type == ENCRYPT) //加密
-        for (int i = 0; i < 16; ++i) // 16轮操作
+        for (int i = 0; i < 16; ++i)  // 16轮操作
             BitsText = BitsText.substr(32, 32) + Xor(funF(BitsText.substr(32, 32), key.GetSubKey(flag, i)),
-                    BitsText.substr(0, 32), 32); // 异或操作
+                                                     BitsText.substr(0, 32), 32); // 异或操作
     else //解密
         for (int i = 15; i >= 0; --i) // 加密操作的拟操作
             BitsText = Xor(funF(BitsText.substr(0, 32), key.GetSubKey(flag, i)), BitsText.substr(32, 32), 32) +
@@ -68,8 +67,8 @@ string TripleDes::funS(const string &Tmp) { // S盒置换
     return ans;
 }
 
-string TripleDes::Operation(Key key, char *p, bool flag) {
-    GetBitsText(p);
+char* TripleDes::Operation(Key key, char *T, bool flag) {
+    GetBitsText(T);
 
     if (flag) {
             DES(key, 0, ENCRYPT);
@@ -80,5 +79,5 @@ string TripleDes::Operation(Key key, char *p, bool flag) {
             DES(key, 1, !DECRYPT);
             DES(key, 0, DECRYPT);
     }
-    return BitsText;
+    return &BitsText[0];
 }

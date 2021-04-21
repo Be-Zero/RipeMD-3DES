@@ -5,12 +5,12 @@
 #include "../Header/Run.h"
 
 int main() {
-    string EnFilePath = "../test/test.png";
-    string DeFilePath = "../test/test_En.png";
+    string EnFilePath = "../test/test.txt";
+    string DeFilePath = "../test/test_En.txt";
     string UserKey = "qth";
     OPMode ep1(EnFilePath, UserKey, 1);
-    ep1.CBC();
+    ep1.ECB();
     OPMode ep2(DeFilePath, UserKey, 0);
-    ep2.CBC();
+    ep2.ECB();
     return 0;
 }

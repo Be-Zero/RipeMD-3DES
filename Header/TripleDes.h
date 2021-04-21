@@ -108,5 +108,5 @@ public:
 
     string funS(const string &Tmp); // S盒置换
 
-    string Operation(Key key, char *p, bool flag);
+    char* Operation(Key key, char *p, bool flag);
 };

@@ -23,14 +23,16 @@ private:
     int BlockNum; // 文件块数
     char *Plaintext; // 存储明文
     int Supple; // 末块补充长度
-    string BitStr;
+    char *BitStr;
 
 public:
     File_IO(string In); // 构造函数
-    string Load_EN(); // 读取文件
-    void Save_EN(string &In); // 存储文件
-    string Load_DE(); // 读取文件
-    void Save_DE(string &In); // 存储文件
-    string StringToBits(int size); // 字符串转二进制串
-    void RestorePlaintext(); // 将二进制信息转化为字节
+    char* Load_EN(); // 读取文件
+    void Save_EN(char *In); // 存储文件
+    char* Load_DE(); // 读取文件
+    void Save_DE(char *In); // 存储文件
+    void StringToBits(int size); // 字符串转二进制串
+    void RestorePlaintext(int size); // 将二进制信息转化为字节
+    int GetEnFileSize();
+    int GetDeFileSize();
 };

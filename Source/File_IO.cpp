@@ -8,7 +8,7 @@ File_IO::File_IO(string In) {
     FilePath = In;
 }
 
-string File_IO::Load_EN() {
+char *File_IO::Load_EN() {
     ifstream file(FilePath, ios::in | ios::binary | ios::ate); // 以二进制读取文件，并将当前指针位置指向文件末尾
     FileSize = file.tellg(); // 返回当前位置的长度，表示文件大小
 
@@ -24,17 +24,16 @@ string File_IO::Load_EN() {
         Plaintext[FileSize + i] = '0';
 
     file.close(); // 关闭文件
-    BitStr = StringToBits(FileSize + Supple);
-
+    StringToBits(FileSize + Supple);
     delete Plaintext;
+    Plaintext = NULL;
+
     return BitStr;
 }
 
-void File_IO::Save_EN(string &In) {
+void File_IO::Save_EN(char *In) {
     BitStr = In;
-
-    RestorePlaintext();
-
+    RestorePlaintext(BlockNum * 8);
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
     string name = FilePath.substr(0, FilePath.rfind("."));
     ofstream file(name + "_En." + suffix, ios::binary);
@@ -44,12 +43,13 @@ void File_IO::Save_EN(string &In) {
     bitset<32> b = Supple;
     strcpy(buffer, b.to_string().c_str());
     file.write(buffer, 32);
-    delete (buffer);
-    delete Plaintext;
+    delete buffer;
     file.close();
+    delete Plaintext;
+    Plaintext = NULL;
 }
 
-string File_IO::Load_DE() {
+char* File_IO::Load_DE() {
     ifstream file(FilePath, ios::in | ios::binary | ios::ate); // 以二进制读取文件，并将当前指针位置指向文件末尾
     FileSize = file.tellg(); // 返回当前位置的字节数，表示文件大小
 
@@ -64,43 +64,47 @@ string File_IO::Load_DE() {
     Supple = b.to_ulong();
     delete buffer;
 
-    BitStr = StringToBits(FileSize); // 936
-
-    FileSize -= Supple;
+    StringToBits(FileSize); // 936
+    delete Plaintext;
+    Plaintext = NULL;
 
     file.close(); // 关闭文件
     return BitStr;
 }
 
-void File_IO::Save_DE(string &In) {
+void File_IO::Save_DE(char *In) {
     BitStr = In;
-
-    RestorePlaintext();
-
+    FileSize -= Supple;
+    RestorePlaintext(FileSize);
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
     string name = FilePath.substr(0, FilePath.rfind("_"));
     ofstream file(name + "_De." + suffix, ios::binary);
     file.write(Plaintext, FileSize);
     file.close();
     delete Plaintext;
+    Plaintext = NULL;
 }
 
-string File_IO::StringToBits(int size) { // 字符串转二进制串
-    string ans = "";
+void File_IO::StringToBits(int size) { // 字符串转二进制串
+    BitStr = new char[size * 8];
     for (int i = 0; i < size; ++i) {
         bitset<8> tmp = Plaintext[i];
-        ans += tmp.to_string();
+        strncpy(BitStr + i * 8, tmp.to_string().c_str(), 8);
     }
-    return ans;
 }
 
-void File_IO::RestorePlaintext() { // 将二进制信息转化为字节
-    Plaintext = new char[BitStr.size() / 8];
-
-    for (int i = 0; i < BitStr.size(); i += 8) {
-        bitset<8> tmp(BitStr.substr(i, 8));
-        char ans = tmp.to_ulong();
-
-        Plaintext[i / 8] = ans;
+void File_IO::RestorePlaintext(int size) { // 将二进制信息转化为字节
+    Plaintext = new char[size];
+    for (int i = 0; i < size; i++) {
+        bitset<8> tmp(BitStr + i * 8);
+        Plaintext[i] = tmp.to_ulong();
     }
+}
+
+int File_IO::GetEnFileSize() {
+    return BlockNum * 64;
+}
+
+int File_IO::GetDeFileSize() {
+    return FileSize * 8;
 }

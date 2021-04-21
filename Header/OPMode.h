@@ -14,9 +14,9 @@ using namespace std;
 
 class OPMode {
 private:
-    string Plaintext;
+    char *Plaintext;
 
-    string res;
+    char *res;
 
     string FilaPath;
 
