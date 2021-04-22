@@ -24,16 +24,13 @@ char *File_IO::Load_EN() {
         Plaintext[FileSize + i] = '0';
 
     file.close(); // 关闭文件
-    StringToBits(FileSize + Supple);
-    delete[] Plaintext;
-    Plaintext = nullptr;
 
-    return BitStr;
+    return Plaintext;
 }
 
 void File_IO::Save_EN(char *In) {
-    BitStr = In;
-    RestorePlaintext(BlockNum * 8);
+    Plaintext = In;
+
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
     string name = FilePath.substr(0, FilePath.rfind("."));
     ofstream file(name + "_En." + suffix, ios::binary);
@@ -43,11 +40,6 @@ void File_IO::Save_EN(char *In) {
     bitset<32> b = Supple;
     strcpy(buffer, b.to_string().c_str());
     file.write(buffer, 32);
-
-    delete[] buffer;
-    file.close();
-    delete[] Plaintext;
-    Plaintext = nullptr;
 }
 
 char* File_IO::Load_DE() {
@@ -65,47 +57,25 @@ char* File_IO::Load_DE() {
     Supple = b.to_ulong();
     delete[] buffer;
 
-    StringToBits(FileSize); // 936
-    delete[] Plaintext;
-    Plaintext = nullptr;
-
     file.close(); // 关闭文件
-    return BitStr;
+    return Plaintext;
 }
 
 void File_IO::Save_DE(char *In) {
-    BitStr = In;
+    Plaintext = In;
     FileSize -= Supple;
-    RestorePlaintext(FileSize);
+
     string suffix = FilePath.substr(FilePath.find_last_of('.') + 1);
     string name = FilePath.substr(0, FilePath.rfind("_"));
     ofstream file(name + "_De." + suffix, ios::binary);
     file.write(Plaintext, FileSize);
     file.close();
-    delete[] Plaintext;
-    Plaintext = nullptr;
-}
-
-void File_IO::StringToBits(int size) { // 字符串转二进制串
-    BitStr = new char[size * 8];
-    for (int i = 0; i < size; ++i) {
-        bitset<8> tmp = Plaintext[i];
-        strncpy(BitStr + i * 8, tmp.to_string().c_str(), 8);
-    }
-}
-
-void File_IO::RestorePlaintext(int size) { // 将二进制信息转化为字节
-    Plaintext = new char[size];
-    for (int i = 0; i < size; i++) {
-        bitset<8> tmp(BitStr + i * 8);
-        Plaintext[i] = tmp.to_ulong();
-    }
 }
 
 int File_IO::GetEnFileSize() {
-    return BlockNum * 64;
+    return BlockNum * 8;
 }
 
 int File_IO::GetDeFileSize() {
-    return FileSize * 8;
+    return FileSize;
 }

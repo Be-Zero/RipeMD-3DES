@@ -4,239 +4,176 @@
 
 #include "../Header/OPMode.h"
 
-OPMode::OPMode(char *Path, char *Key, bool E_D) {
+OPMode::OPMode(char *Path, char *key, bool E_D) {
+    UserKey = key;
     FilaPath = Path;
-    UserKey = Key;
     flag = E_D;
-    InitialVector = "Be_Zero!";
+    memcpy(InitialVector, "Be_Zero!", 8);
 }
 
 void OPMode::ECB() {
     Key key(UserKey);
     key.MakeSubKey();
     UserSubKey = key.GetSubKey();
-    TripleDes des;
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < file_io.GetEnFileSize(); i += 64) {
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
             des.Operation(UserSubKey, Plaintext + i, 1);
         }
         file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < file_io.GetDeFileSize(); i += 64) {
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
             des.Operation(UserSubKey, Plaintext + i, 0);
         }
         file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
-/*
 
 void OPMode::CBC() {
     Key key(UserKey);
-    TripleDes des;
+    key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
-    string mmp = StringToBits(InitialVector);
-    char *IV = &mmp[0];
-
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            if (i == 0) {
-                Xor(&Plaintext[i], IV);
-            } else {
-                Xor(&Plaintext[i], &res[i-64]);
-            }
-            res += des.Operation(key, &Plaintext[i], 1);
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+            Xor(Plaintext + i, InitialVector);
+            des.Operation(UserSubKey, Plaintext + i, 1);
+            memcpy(InitialVector, Plaintext + i, 8);
         }
-        file_io.Save_EN(res);
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = des.Operation(key, &Plaintext[i], 0);
-            if (i == 0) {
-                Xor(&tmp[0], IV);
-            } else {
-                Xor(&tmp[0], &Plaintext[i-64]);
-            }
-            res += tmp;
+        char tmp[8];
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+            memcpy(tmp, Plaintext + i, 8);
+            des.Operation(UserSubKey, Plaintext + i, 0);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(InitialVector, tmp, 8);
         }
-        file_io.Save_DE(res);
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
 
 void OPMode::CFB() {
     Key key(UserKey);
-    TripleDes des;
+    key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
-    string IV = StringToBits(InitialVector);
-    IV = des.Operation(key, IV, 1);
 
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = Plaintext.substr(i, 64);
-            if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
-            } else {
-                string tmp = res.substr(i - 64, 64);
-                bitset<64> ep1(tmp), ep2(des.Operation(key, tmp, 1));
-                tmp = (ep1 ^ ep2).to_string();
-            }
-            res += tmp;
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(InitialVector, Plaintext + i, 8);
         }
-        file_io.Save_EN(res);
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = Plaintext.substr(i, 64);
-            if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
-            } else {
-                string tmp = Plaintext.substr(i - 64, 64);
-                bitset<64> ep1(tmp), ep2(des.Operation(key, tmp, 1));
-                tmp = (ep1 ^ ep2).to_string();
-            }
-            res += tmp;
+        char tmp[8];
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            memcpy(tmp, Plaintext + i, 8);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(InitialVector, tmp, 8);
         }
-        file_io.Save_DE(res);
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
 
 void OPMode::OFB() {
     Key key(UserKey);
-    TripleDes des;
+    key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
-    string IV = StringToBits(InitialVector);
+
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            IV = des.Operation(key, IV, 1);
-            string tmp = Plaintext.substr(i, 64);
-            bitset<64> ep1(tmp), ep2(IV);
-            tmp = (ep1 ^ ep2).to_string();
-            res += tmp;
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            Xor(Plaintext + i, InitialVector);
         }
-        file_io.Save_EN(res);
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            IV = des.Operation(key, IV, 1);
-            string tmp = Plaintext.substr(i, 64);
-            bitset<64> ep1(tmp), ep2(IV);
-            tmp = (ep1 ^ ep2).to_string();
-            res += tmp;
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            Xor(Plaintext + i, InitialVector);
         }
-        file_io.Save_DE(res);
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
 
 void OPMode::CTR() {
     Key key(UserKey);
-    TripleDes des;
+    key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
-    string IV = StringToBits(InitialVector);
-    bitset<64> add = 1;
+    char tmp[1];
+
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            bitset<64> counter(des.Operation(key, IV, 1));
-            string tmp = Plaintext.substr(i, 64);
-            bitset<64> ep(tmp);
-            tmp = (ep ^ counter).to_string();
-            res += tmp;
-            counter = OpPlus(counter, add);
-            IV = counter.to_string();
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(tmp, InitialVector, 1);
+            memcpy(InitialVector, InitialVector + 1, 7);
+            memcpy(InitialVector + 7, tmp, 1);
         }
-        file_io.Save_EN(res);
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            bitset<64> counter(des.Operation(key, IV, 1));
-            string tmp = Plaintext.substr(i, 64);
-            bitset<64> ep(tmp);
-            tmp = (ep ^ counter).to_string();
-            res += tmp;
-            counter = OpPlus(counter, add);
-            IV = counter.to_string();
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+            des.Operation(UserSubKey, InitialVector, 1);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(tmp, InitialVector, 1);
+            memcpy(InitialVector, InitialVector + 1, 7);
+            memcpy(InitialVector + 7, tmp, 1);
         }
-        file_io.Save_DE(res);
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
 
 void OPMode::PCBC() {
     Key key(UserKey);
-    TripleDes des;
+    key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
-    string IV = StringToBits(InitialVector);
+    char tmp[8];
 
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            string tmp = Plaintext.substr(i, 64);
-            if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
-            } else {
-                bitset<64> ep1(tmp), ep2(res.substr(i - 64, 64)), ep3(
-                        Plaintext.substr(i - 64, 64));
-                tmp = (ep1 ^ ep2 ^ ep3).to_string();
-            }
-            res += des.Operation(key, tmp, 1);
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+            memcpy(tmp, Plaintext + i, 8);
+            Xor(Plaintext + i, InitialVector);
+            des.Operation(UserSubKey, Plaintext + i, 1);
+            memcpy(InitialVector, tmp, 8);
+            Xor(InitialVector, Plaintext + i);
         }
-        file_io.Save_EN(res);
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < Plaintext.size(); i += 64) {
-            string t = Plaintext.substr(i, 64);
-            string tmp = des.Operation(key, tmp, 0);
-            if (i == 0) {
-                bitset<64> ep1(tmp), ep2(IV);
-                tmp = (ep1 ^ ep2).to_string();
-            } else {
-                bitset<64> ep1(tmp), ep2(Plaintext.substr(i - 64, 64)), ep3(
-                        res.substr(i - 64, 64));
-                tmp = (ep1 ^ ep2 ^ ep3).to_string();
-            }
-            res += tmp;
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+            memcpy(tmp, Plaintext + i, 8);
+            des.Operation(UserSubKey, Plaintext + i, 0);
+            Xor(Plaintext + i, InitialVector);
+            memcpy(InitialVector, tmp, 8);
+            Xor(InitialVector, Plaintext + i);
         }
-        file_io.Save_DE(res);
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }
 
-string OPMode::StringToBits(string s) { // 字符串转二进制串
-    string ans = "";
-    for (int i = 0; i < s.size(); ++i) {
-        bitset<8> tmp = s[i];
-        ans += tmp.to_string();
-    }
-    return ans;
-}
-
-bitset<64> OPMode::OpPlus(bitset<64> a, bitset<64> b) {
-    bitset<64> sum = a;
-    bitset<64> carry = b;
-    bitset<64> tmps;
-    while (carry.any()) {
-        tmps = sum;
-        sum = tmps ^ carry; // 求非进位结果
-        carry = (tmps & carry) << 1; // 求进位结果（两个相加等于最终结果）
-    }
-    return sum; // 进位结果等于0时，结束。
-}
-
 void OPMode::Xor(char *left, char *right) { // 异或操作
-    for(int i=0;i<64;++i)
-        if(left[i]==right[i])
-            left[i]='0';
-        else left[i]='1';
-}*/
+    for (int i = 0; i < 8; ++i)
+        left[i] ^= right[i];
+}

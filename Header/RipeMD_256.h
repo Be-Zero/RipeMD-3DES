@@ -22,6 +22,8 @@ class RipeMD_256 {
 private:
     ulong MDbuf[8];
 
+    unsigned char hashcode[32];
+
 public:
     void MDinit(); // 初始化
 
@@ -57,5 +59,5 @@ public:
 
     void MDfinish(unsigned char *strptr, ulong lswlen, ulong mswlen);
 
-    char* RMD(unsigned char *message);
+    unsigned char* RMD(unsigned char *message);
 };

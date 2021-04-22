@@ -38,35 +38,13 @@ bitset
 iostream
 -
 
-F:/RipeMD-3DES/Header/Run.h
-OPMode.h
-F:/RipeMD-3DES/Header/OPMode.h
-time.h
--
-
 F:/RipeMD-3DES/Header/TripleDes.h
 bitset
 -
 Key.h
 F:/RipeMD-3DES/Header/Key.h
 
-F:/RipeMD-3DES/Source/File_IO.cpp
-../Header/File_IO.h
-F:/RipeMD-3DES/Header/File_IO.h
-
-F:/RipeMD-3DES/Source/Key.cpp
-../Header/Key.h
-F:/RipeMD-3DES/Header/Key.h
-
 F:/RipeMD-3DES/Source/OPMode.cpp
 ../Header/OPMode.h
 F:/RipeMD-3DES/Header/OPMode.h
-
-F:/RipeMD-3DES/Source/Run.cpp
-../Header/Run.h
-F:/RipeMD-3DES/Header/Run.h
-
-F:/RipeMD-3DES/Source/TripleDes.cpp
-../Header/TripleDes.h
-F:/RipeMD-3DES/Header/TripleDes.h
 

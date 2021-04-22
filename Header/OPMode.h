@@ -15,18 +15,20 @@ class OPMode {
 private:
     char *Plaintext;
 
-    char *FilaPath;
-
     char *UserKey;
 
-    char *UserSubKey;
+    bool *UserSubKey;
 
     bool flag;
 
-    char *InitialVector;
+    char InitialVector[8];
+
+    char *FilaPath;
+
+    TripleDes des;
 
 public:
-    OPMode(char *Path, char *Key, bool E_D);
+    OPMode(char *Path, char *UserKey, bool E_D);
 
     void ECB();
 
@@ -39,10 +41,6 @@ public:
     void CTR();
 
     void PCBC();
-
-    string StringToBits(string s);
-
-    bitset<64> OpPlus (bitset<64> a, bitset<64> b);
 
     void Xor(char *left, char *right);
 };

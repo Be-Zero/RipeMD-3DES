@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QString>
+#include <string>
 #include "ui_system_ui.h"
 #include "OPMode.h"
 

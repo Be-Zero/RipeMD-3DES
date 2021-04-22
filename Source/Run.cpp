@@ -2,6 +2,7 @@
 // Created by Bezero on 2021/4/12.
 //
 
+/*
 #include "../Header/Run.h"
 
 int main() {
@@ -11,11 +12,11 @@ int main() {
     char *UserKey = "qth";
     OPMode ep1(EnFilePath, UserKey, 1);
     t=clock();
-    ep1.ECB();
+    ep1.PCBC();
     cout<<"en:"<<(clock()-t)*1.0/CLOCKS_PER_SEC<<endl;
     OPMode ep2(DeFilePath, UserKey, 0);
     t=clock();
-    ep2.ECB();
+    ep2.PCBC();
     cout<<"de:"<<(clock()-t)*1.0/CLOCKS_PER_SEC<<endl;
     return 0;
-}
+}*/

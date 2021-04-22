@@ -36,8 +36,9 @@ void System_UI::on_Save_clicked() {
 
 void System_UI::on_Encryption_clicked() {
     mode = ui->LineBox->currentIndex();
-    string pstr = filepath.toStdString(), kstr = userkey.toStdString();
-    OPMode ep(pstr, kstr, 1);
+    string pstr = filepath.toStdString();
+    string kstr = userkey.toStdString();
+    OPMode ep(&pstr[0], &kstr[0], 1);
     switch(mode) {
         case 0: {
             ep.ECB();
@@ -68,8 +69,9 @@ void System_UI::on_Encryption_clicked() {
 
 void System_UI::on_Decryption_clicked() {
     mode = ui->LineBox->currentIndex();
-    string pstr = filepath.toStdString(), kstr = userkey.toStdString();
-    OPMode ep(pstr, kstr, 0);
+    string pstr = filepath.toStdString();
+    string kstr = userkey.toStdString();
+    OPMode ep(&pstr[0], &kstr[0], 0);
     switch(mode) {
         case 0: {
             ep.ECB();

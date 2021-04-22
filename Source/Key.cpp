@@ -6,59 +6,52 @@
 
 Key::Key(char *In) {
     UserKey = In;
-    tmp = new char[56];
+    KL = K;
+    KR = K + 28;
 }
 
 void Key::RipeMD_process() {
     RipeMD_256 ep;
-    UserBitKey = ep.RMD((byte *) UserKey);
+    UserKey = (char*)ep.RMD((unsigned char *) UserKey);
 }
 
-void Key::Transform(char *Out, const string &In, const char *Table, int len) { // 将64位密钥压缩位56位
+void Key::Transform(bool *Out, bool *In, const char *Table, int len) { // 置换函数
     for (int i = 0; i < len; ++i)
-        Out[i] = In[Table[i] - 1];
+        buffer[i] = In[Table[i] - 1];
+    memcpy(Out, buffer, len);
 }
 
 void Key::MakeSubKey() { // 生成子密钥
     RipeMD_process();
 
-    char *KL1 = new char[56];
-    char *KL2;
-    char *KR1 = new char[56];
-    char *KR2;
-    Transform(KL1, UserBitKey.substr(0, 64), Table_PC1, 56);
-    KL2 = KL1 + 28;
-    Transform(KR1, UserBitKey.substr(64, 64), Table_PC1, 56);
-    KR2 = KR1 + 28;
-
+    Byte2Bit(K, UserKey, 64);
+    Transform(K, K, Table_PC1, 56);
     for (int i = 0; i < 16; ++i) {
-        MoveLeft(KL1, Table_Moveleft[i]); // 循环左移，处理子密钥的左半部分
-        MoveLeft(KR1, Table_Moveleft[i]); // 同上，处理子密钥的右半部分
-
-        strncpy(tmp, KL1, 28);
-        strncpy(tmp + 28, KR1, 28);
-        Transform((char *) SubKey + i * 16, tmp, Table_PC2, 48); // 存入相应的子密钥中
+        MoveLeft(KL, 28, Table_Moveleft[i]);
+        MoveLeft(KR, 28, Table_Moveleft[i]);
+        Transform(SubKey[0][i], K, Table_PC2, 48);
     }
 
+    Byte2Bit(K, UserKey + 8, 64);
+    Transform(K, K, Table_PC1, 56);
     for (int i = 0; i < 16; ++i) {
-        MoveLeft(KL2, Table_Moveleft[i]); // 循环左移，处理子密钥的左半部分
-        MoveLeft(KR2, Table_Moveleft[i]); // 同上，处理子密钥的右半部分
-        strncpy(tmp, KL2, 28);
-        strncpy(tmp + 28, KR2, 28);
-        Transform((char *) SubKey + 16 * 48 + i * 16, tmp, Table_PC2, 48); // 存入相应的子密钥中
+        MoveLeft(KL, 28, Table_Moveleft[i]);
+        MoveLeft(KR, 28, Table_Moveleft[i]);
+        Transform(SubKey[1][i], K, Table_PC2, 48);
     }
 }
 
-void Key::MoveLeft(char *T, int flag) { // 循环移位
-    strncpy(tmp, T, flag);
-    strncpy(T, T + flag, 28 - flag);
-    strncpy(T + 28 - flag, tmp, flag);
+void Key::MoveLeft(bool *In, int len, int loop) {
+    memcpy(buffer, In, loop);
+    memcpy(In, In + loop, len - loop);
+    memcpy(In + len - loop, buffer, loop);
 }
 
-char *Key::GetSubKey() { // 获取子密钥
-    return (char *) SubKey;
+bool *Key::GetSubKey() { // 获取子密钥
+    return (bool *) SubKey;
 }
 
-Key::~Key() {
-    delete[] tmp;
+void Key::Byte2Bit(bool *Out, const char *In, int bits) {
+    for (int i = 0; i < bits; ++i)
+        Out[i] = (In[i >> 3] >> (i & 7)) & 1;
 }
