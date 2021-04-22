@@ -25,8 +25,8 @@ char *File_IO::Load_EN() {
 
     file.close(); // 关闭文件
     StringToBits(FileSize + Supple);
-    delete Plaintext;
-    Plaintext = NULL;
+    delete[] Plaintext;
+    Plaintext = nullptr;
 
     return BitStr;
 }
@@ -43,10 +43,11 @@ void File_IO::Save_EN(char *In) {
     bitset<32> b = Supple;
     strcpy(buffer, b.to_string().c_str());
     file.write(buffer, 32);
-    delete buffer;
+
+    delete[] buffer;
     file.close();
-    delete Plaintext;
-    Plaintext = NULL;
+    delete[] Plaintext;
+    Plaintext = nullptr;
 }
 
 char* File_IO::Load_DE() {
@@ -62,11 +63,11 @@ char* File_IO::Load_DE() {
     strncpy(buffer, Plaintext + FileSize, 32);
     bitset<32> b(buffer);
     Supple = b.to_ulong();
-    delete buffer;
+    delete[] buffer;
 
     StringToBits(FileSize); // 936
-    delete Plaintext;
-    Plaintext = NULL;
+    delete[] Plaintext;
+    Plaintext = nullptr;
 
     file.close(); // 关闭文件
     return BitStr;
@@ -81,8 +82,8 @@ void File_IO::Save_DE(char *In) {
     ofstream file(name + "_De." + suffix, ios::binary);
     file.write(Plaintext, FileSize);
     file.close();
-    delete Plaintext;
-    Plaintext = NULL;
+    delete[] Plaintext;
+    Plaintext = nullptr;
 }
 
 void File_IO::StringToBits(int size) { // 字符串转二进制串

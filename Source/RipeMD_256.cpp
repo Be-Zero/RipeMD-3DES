@@ -281,7 +281,7 @@ void RipeMD_256::MDfinish(unsigned char *message, ulong lenth, ulong mswlen) { /
     compress(X); // 压缩函数
 }
 
-string RipeMD_256::RMD(unsigned char *message) { // 运行函数
+char* RipeMD_256::RMD(unsigned char *message) { // 运行函数
     unsigned char hashcode[33]; // 存储最终结果
     ulong X[16]; // 当前16字的块
 
@@ -307,10 +307,10 @@ string RipeMD_256::RMD(unsigned char *message) { // 运行函数
         hashcode[i + 3] = (MDbuf[i >> 2] >> 24);
     }
 
-    string ret = "";
+    char *ret = new char[256];
     for (unsigned int i = 0; i < 32; i++) {
         bitset<8> bt(hashcode[i]);
-        ret += bt.to_string();
+        strncpy(ret+i*8, bt.to_string().c_str(), 8);
     }
 
     return ret; // 返回string串

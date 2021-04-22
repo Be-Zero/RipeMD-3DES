@@ -57,5 +57,5 @@ public:
 
     void MDfinish(unsigned char *strptr, ulong lswlen, ulong mswlen);
 
-    string RMD(unsigned char *message);
+    char* RMD(unsigned char *message);
 };

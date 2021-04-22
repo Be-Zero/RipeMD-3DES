@@ -5,7 +5,6 @@
 #ifndef RIPEMD_3DES_OPMODE_H
 #define RIPEMD_3DES_OPMODE_H
 
-#include <string>
 #include "File_IO.h"
 
 using namespace std;
@@ -18,16 +17,18 @@ private:
 
     char *res;
 
-    string FilaPath;
+    char *FilaPath;
 
-    string UserKey;
+    char *UserKey;
+
+    char *UserSubKey;
 
     bool flag;
 
-    string InitialVector;
+    char *InitialVector;
 
 public:
-    OPMode(string Path, string Key, bool E_D);
+    OPMode(char *Path, char *Key, bool E_D);
 
     void ECB();
 

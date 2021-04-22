@@ -5,7 +5,6 @@
 #ifndef SECURITYSYSTEM_TRIPLEDES_H
 #define SECURITYSYSTEM_TRIPLEDES_H
 
-#include <string>
 #include <bitset>
 
 using namespace std;
@@ -100,13 +99,13 @@ public:
 
     void Transform(char *In, const char *Table, int len); // 将64位密钥压缩位56位
 
-    void DES(Key key, int flag, bool Type); // Des
+    void DES(char *key, int flag, bool Type); // Des
 
     void Xor(char *In, char *left, string right, int len); // 异或操作
 
-    void funF(char *In, char *T, string key); // F函数
+    void funF(char *In, char *key); // F函数
 
     void funS(char *Tmp); // S盒置换
 
-    char* Operation(Key key, char *p, bool flag);
+    char* Operation(char *key, char *p, bool flag);
 };

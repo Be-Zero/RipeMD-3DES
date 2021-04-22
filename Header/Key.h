@@ -5,8 +5,6 @@
 #ifndef SECURITYSYSTEM_KEY_H
 #define SECURITYSYSTEM_KEY_H
 
-#include <string>
-#include <bitset>
 #include "RipeMD_256.h"
 
 using namespace std;
@@ -15,11 +13,11 @@ using namespace std;
 
 class Key {
 private:
-    string UserKey; // 用户密钥1和2
+    char *UserKey; // 用户密钥1和2
 
     string UserBitKey; // 用户密钥经过RipeMD处理后的结果
 
-    string SubKey[2][16]; // 轮密钥
+    char SubKey[2][16][48]; // 轮密钥
 
     constexpr static char Table_PC1[56] = { // 密钥初始置换表
             57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18,
@@ -39,16 +37,16 @@ private:
             44, 49, 39, 56, 34, 53, 46, 42, 50, 36, 29, 32
     };
 public:
-    Key(string &In); // 构造函数
+    Key(char *In); // 构造函数
 
     void RipeMD_process(); // TODO RipeMD
 
-    string Transform(const string &In, const char *Table, int len); // 将64位密钥压缩位56位
+    void Transform(char *Out, const string &In, const char *Table, int len); // 将64位密钥压缩位56位
 
     void MakeSubKey(); // 生成子密钥
 
-    void MoveLeft(string &T, int flag); // 循环移位
+    void MoveLeft(char *T, int flag); // 循环移位
 
-    string GetSubKey(int num, int round); // 获取子密钥
+    char* GetSubKey(); // 获取子密钥
 };
 

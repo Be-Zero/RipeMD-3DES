@@ -6,7 +6,6 @@
 #define SECURITYSYSTEM_FILE_IO_H
 
 #include <iostream>
-#include <string>
 #include <string.h>
 #include <bitset>
 #include <fstream>

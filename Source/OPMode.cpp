@@ -4,8 +4,7 @@
 
 #include "../Header/OPMode.h"
 
-OPMode::OPMode(string Path, string Key, bool E_D) {
-    res = NULL;
+OPMode::OPMode(char *Path, char *Key, bool E_D) {
     FilaPath = Path;
     UserKey = Key;
     flag = E_D;
@@ -15,28 +14,29 @@ OPMode::OPMode(string Path, string Key, bool E_D) {
 void OPMode::ECB() {
     Key key(UserKey);
     key.MakeSubKey();
+    UserSubKey = key.GetSubKey();
     TripleDes des;
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
         res = new char[file_io.GetEnFileSize()];
         for (int i = 0; i < file_io.GetEnFileSize(); i += 64) {
-            strncpy(res + i, des.Operation(key, Plaintext + i, 1), 64);
+            strncpy(res + i, des.Operation(UserSubKey, Plaintext + i, 1), 64);
         }
-        Plaintext = NULL;
+        Plaintext = nullptr;
         file_io.Save_EN(res);
-        delete res;
-        res = NULL;
+        delete[] res;
+        res = nullptr;
     } else {
         Plaintext = file_io.Load_DE();
         res = new char[file_io.GetDeFileSize()];
         for (int i = 0; i < file_io.GetDeFileSize(); i += 64) {
-            strncpy(res + i, des.Operation(key, Plaintext + i, 0), 64);
+            strncpy(res + i, des.Operation(UserSubKey, Plaintext + i, 0), 64);
         }
-        Plaintext = NULL;
+        Plaintext = nullptr;
         file_io.Save_DE(res);
-        delete res;
-        res = NULL;
+        delete[] res;
+        res = nullptr;
     }
     cout << "finished!" << endl;
 }
