@@ -4,9 +4,12 @@
 
 #include "../Header/TripleDes.h"
 
+TripleDes::TripleDes() {
+    buffer = new char[64];
+}
+
 void TripleDes::GetBitsText(char *T) {
-    BitsText = new char[64];
-    strncpy(BitsText, T, 64);
+    BitsText = T;
 }
 
 void TripleDes::DES(char *key, int flag, bool Type) {
@@ -14,56 +17,46 @@ void TripleDes::DES(char *key, int flag, bool Type) {
 
     if (Type == ENCRYPT) //加密
         for (int i = 0; i < 16; ++i) {// 16轮操作
-            char *In = new char[48];
-            strncpy(In, BitsText + 32, 32);
-            funF(In, &key[flag * 16 * 48 + i * 16]);
-            Xor(In, In, BitsText, 32);
+            strncpy(buffer, BitsText + 32, 32);
+            funF(&key[flag * 16 * 48 + i * 16]);
+            Xor(BitsText, 32);
             strncpy(BitsText, BitsText + 32, 32);
-            strncpy(BitsText + 32, In, 32);
-            delete[] In;
-            In = nullptr;
+            strncpy(BitsText + 32, buffer, 32);
         }
     else //解密
         for (int i = 15; i >= 0; --i) {// 加密操作的拟操作
-            char *In = new char[48];
-            strncpy(In, BitsText, 32);
-            funF(In, &key[flag * 16 * 48 + i * 16]);
-            Xor(In, In, BitsText + 32, 32);
+            strncpy(buffer, BitsText, 32);
+            funF(&key[flag * 16 * 48 + i * 16]);
+            Xor(BitsText + 32, 32);
             strncpy(BitsText + 32, BitsText, 32);
-            strncpy(BitsText, In, 32);
-            delete[] In;
-            In = nullptr;
+            strncpy(BitsText, buffer, 32);
         }
     Transform(BitsText, Table_InverseIP, 64); // 转换为64位
 }
 
 void TripleDes::Transform(char *In, const char *Table, int len) { // 置换函数
-    char *Out = new char[len];
     for (int i = 0; i < len; ++i)
-        Out[i] = In[Table[i] - 1];
-    strncpy(In, Out, len);
-    delete[] Out;
-    Out = nullptr;
+        buffer[i] = In[Table[i] - 1];
+    strncpy(In, buffer, len);
 }
 
-void TripleDes::Xor(char *In, char *left, string right, int len) { // 异或操作
+void TripleDes::Xor(char *right, int len) { // 异或操作
     for (int i = 0; i < len; ++i)
-        if (left[i] == right[i])
-            In[i] = '0';
-        else In[i] = '1';
+        if (buffer[i] == right[i])
+            buffer[i] = '0';
+        else buffer[i] = '1';
 }
 
-void TripleDes::funF(char *In, char *key) { // F函数
-    Transform(In, Table_E, 48); // 转化为48位
-    Xor(In, In, key, 48); // 异或操作
-    funS(In); // S盒
-    Transform(In, Table_P, 32); // 转化为32位
+void TripleDes::funF(char *key) { // F函数
+    Transform(buffer, Table_E, 48); // 转化为48位
+    Xor(key, 48); // 异或操作
+    funS(); // S盒
+    Transform(buffer, Table_P, 32); // 转化为32位
 }
 
-void TripleDes::funS(char *In) { // S盒置换
-    char *ans = new char[32];
+void TripleDes::funS() { // S盒置换
     for (int i = 0; i < 8; ++i) {
-        char *flag = In + i * 6;
+        char *flag = buffer + i * 6;
 
         int row = 0, column = 0;
         if (flag[0] == '1')
@@ -80,11 +73,8 @@ void TripleDes::funS(char *In) { // S盒置换
             column++;
 
         bitset<4> tmp = Box_S[i][row][column];
-        strncpy(ans + i * 4, tmp.to_string().c_str(), 4);
+        strncpy(buffer + i * 4, tmp.to_string().c_str(), 4);
     }
-    strncpy(In, ans, 32);
-    delete[] ans;
-    ans = nullptr;
 }
 
 char *TripleDes::Operation(char *key, char *T, bool flag) {
@@ -100,4 +90,8 @@ char *TripleDes::Operation(char *key, char *T, bool flag) {
         DES(key, 0, DECRYPT);
     }
     return BitsText;
+}
+
+TripleDes::~TripleDes() {
+    delete[] buffer;
 }

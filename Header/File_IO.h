@@ -9,7 +9,6 @@
 #include <string.h>
 #include <bitset>
 #include <fstream>
-#include "Key.h"
 #include "TripleDes.h"
 
 using namespace std;

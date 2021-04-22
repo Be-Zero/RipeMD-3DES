@@ -6,21 +6,17 @@
 #define SECURITYSYSTEM_TRIPLEDES_H
 
 #include <bitset>
+#include "Key.h"
 
 using namespace std;
 
 #endif //SECURITYSYSTEM_TRIPLEDES_H
 
-#ifndef SECURITYSYSTEM_FILE_IO_H
-#define SECURITYSYSTEM_FILE_IO_H
-
-#include "Key.h"
-
-#endif //SECURITYSYSTEM_FILE_IO_H
-
 class TripleDes {
 private:
     char *BitsText; // 二进制明文
+
+    char *buffer;
 
     const static bool ENCRYPT = true;
 
@@ -95,17 +91,21 @@ private:
             2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25
     };
 public:
+    TripleDes();
+
     void GetBitsText(char *T); // 获取明文
 
     void Transform(char *In, const char *Table, int len); // 将64位密钥压缩位56位
 
     void DES(char *key, int flag, bool Type); // Des
 
-    void Xor(char *In, char *left, string right, int len); // 异或操作
+    void Xor(char *right, int len); // 异或操作
 
-    void funF(char *In, char *key); // F函数
+    void funF(char *key); // F函数
 
-    void funS(char *Tmp); // S盒置换
+    void funS(); // S盒置换
 
     char* Operation(char *key, char *p, bool flag);
+
+    ~TripleDes();
 };

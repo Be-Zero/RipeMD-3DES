@@ -15,8 +15,6 @@ class OPMode {
 private:
     char *Plaintext;
 
-    char *res;
-
     char *FilaPath;
 
     char *UserKey;

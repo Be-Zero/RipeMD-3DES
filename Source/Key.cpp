@@ -6,6 +6,7 @@
 
 Key::Key(char *In) {
     UserKey = In;
+    tmp = new char[56];
 }
 
 void Key::RipeMD_process() {
@@ -33,35 +34,31 @@ void Key::MakeSubKey() { // 生成子密钥
     for (int i = 0; i < 16; ++i) {
         MoveLeft(KL1, Table_Moveleft[i]); // 循环左移，处理子密钥的左半部分
         MoveLeft(KR1, Table_Moveleft[i]); // 同上，处理子密钥的右半部分
-        char *tmp = new char[56];
+
         strncpy(tmp, KL1, 28);
         strncpy(tmp + 28, KR1, 28);
         Transform((char *) SubKey + i * 16, tmp, Table_PC2, 48); // 存入相应的子密钥中
-        delete[] tmp;
-        tmp = nullptr;
     }
 
     for (int i = 0; i < 16; ++i) {
         MoveLeft(KL2, Table_Moveleft[i]); // 循环左移，处理子密钥的左半部分
         MoveLeft(KR2, Table_Moveleft[i]); // 同上，处理子密钥的右半部分
-        char *tmp = new char[56];
         strncpy(tmp, KL2, 28);
         strncpy(tmp + 28, KR2, 28);
         Transform((char *) SubKey + 16 * 48 + i * 16, tmp, Table_PC2, 48); // 存入相应的子密钥中
-        delete[] tmp;
-        tmp = nullptr;
     }
 }
 
 void Key::MoveLeft(char *T, int flag) { // 循环移位
-    char *tmp = new char[flag];
     strncpy(tmp, T, flag);
     strncpy(T, T + flag, 28 - flag);
     strncpy(T + 28 - flag, tmp, flag);
-    delete[] tmp;
-    tmp = NULL;
 }
 
 char *Key::GetSubKey() { // 获取子密钥
     return (char *) SubKey;
+}
+
+Key::~Key() {
+    delete[] tmp;
 }

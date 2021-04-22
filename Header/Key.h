@@ -15,6 +15,8 @@ class Key {
 private:
     char *UserKey; // 用户密钥1和2
 
+    char *tmp;
+
     string UserBitKey; // 用户密钥经过RipeMD处理后的结果
 
     char SubKey[2][16][48]; // 轮密钥
@@ -39,7 +41,7 @@ private:
 public:
     Key(char *In); // 构造函数
 
-    void RipeMD_process(); // TODO RipeMD
+    void RipeMD_process();
 
     void Transform(char *Out, const string &In, const char *Table, int len); // 将64位密钥压缩位56位
 
@@ -48,5 +50,7 @@ public:
     void MoveLeft(char *T, int flag); // 循环移位
 
     char* GetSubKey(); // 获取子密钥
+
+    ~Key();
 };
 

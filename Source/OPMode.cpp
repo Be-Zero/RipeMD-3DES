@@ -19,24 +19,16 @@ void OPMode::ECB() {
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
-        res = new char[file_io.GetEnFileSize()];
         for (int i = 0; i < file_io.GetEnFileSize(); i += 64) {
-            strncpy(res + i, des.Operation(UserSubKey, Plaintext + i, 1), 64);
+            des.Operation(UserSubKey, Plaintext + i, 1);
         }
-        Plaintext = nullptr;
-        file_io.Save_EN(res);
-        delete[] res;
-        res = nullptr;
+        file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        res = new char[file_io.GetDeFileSize()];
         for (int i = 0; i < file_io.GetDeFileSize(); i += 64) {
-            strncpy(res + i, des.Operation(UserSubKey, Plaintext + i, 0), 64);
+            des.Operation(UserSubKey, Plaintext + i, 0);
         }
-        Plaintext = nullptr;
-        file_io.Save_DE(res);
-        delete[] res;
-        res = nullptr;
+        file_io.Save_DE(Plaintext);
     }
     cout << "finished!" << endl;
 }

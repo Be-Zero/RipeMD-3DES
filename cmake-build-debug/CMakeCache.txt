@@ -241,6 +241,9 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Value Computed by CMake
 RipeMD_3DES_BINARY_DIR:STATIC=F:/RipeMD-3DES/cmake-build-debug
 
+//The directory containing a CMake configuration file for RipeMD_3DES.
+RipeMD_3DES_DIR:PATH=RipeMD_3DES_DIR-NOTFOUND
+
 //Value Computed by CMake
 RipeMD_3DES_SOURCE_DIR:STATIC=F:/RipeMD-3DES
 
