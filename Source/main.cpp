@@ -1,5 +1,4 @@
 #include "../Header/system_ui.h"
-
 #include <QApplication>
 
 int main(int argc, char *argv[])

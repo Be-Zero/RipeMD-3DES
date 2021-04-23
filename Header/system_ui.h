@@ -5,7 +5,10 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QString>
+#include <QDesktopServices>
 #include <string>
+#include <time.h>
+#include <stdio.h>
 #include "ui_system_ui.h"
 #include "OPMode.h"
 
@@ -30,12 +33,12 @@ private slots:
 
     void on_Save_clicked();
 
+    void on_OpenDirectory_clicked();
+
 private:
     Ui::System_UI *ui;
     QString filepath;
-    // "../test/test.txt";
-    // "../test/test_En.txt";
-    QString userkey; // = "qth";
+    QString userkey;
     int mode;
 };
 #endif // SYSTEM_UI_H

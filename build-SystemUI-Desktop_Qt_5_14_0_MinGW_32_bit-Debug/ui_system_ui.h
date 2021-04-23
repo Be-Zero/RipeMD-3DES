@@ -36,6 +36,7 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QPushButton *Save;
+    QPushButton *OpenDirectory;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,7 +44,7 @@ public:
     {
         if (System_UI->objectName().isEmpty())
             System_UI->setObjectName(QString::fromUtf8("System_UI"));
-        System_UI->resize(522, 314);
+        System_UI->resize(522, 317);
         centralwidget = new QWidget(System_UI);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         Select = new QPushButton(centralwidget);
@@ -68,7 +69,7 @@ public:
         LineBox->addItem(QString());
         LineBox->addItem(QString());
         LineBox->setObjectName(QString::fromUtf8("LineBox"));
-        LineBox->setGeometry(QRect(330, 180, 61, 31));
+        LineBox->setGeometry(QRect(250, 200, 61, 31));
         LineBox->setFont(font);
         LineBox->setLayoutDirection(Qt::LeftToRight);
         LineBox->setEditable(false);
@@ -76,11 +77,11 @@ public:
         LineBox->setModelColumn(0);
         Encryption = new QPushButton(centralwidget);
         Encryption->setObjectName(QString::fromUtf8("Encryption"));
-        Encryption->setGeometry(QRect(80, 230, 121, 31));
+        Encryption->setGeometry(QRect(90, 260, 121, 31));
         Encryption->setFont(font);
         Decryption = new QPushButton(centralwidget);
         Decryption->setObjectName(QString::fromUtf8("Decryption"));
-        Decryption->setGeometry(QRect(320, 230, 121, 31));
+        Decryption->setGeometry(QRect(330, 260, 121, 31));
         Decryption->setFont(font);
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
@@ -96,12 +97,16 @@ public:
         label_2->setFont(font1);
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(120, 180, 171, 31));
+        label_3->setGeometry(QRect(50, 200, 171, 31));
         label_3->setFont(font1);
         Save = new QPushButton(centralwidget);
         Save->setObjectName(QString::fromUtf8("Save"));
         Save->setGeometry(QRect(390, 130, 101, 31));
         Save->setFont(font);
+        OpenDirectory = new QPushButton(centralwidget);
+        OpenDirectory->setObjectName(QString::fromUtf8("OpenDirectory"));
+        OpenDirectory->setGeometry(QRect(380, 200, 101, 31));
+        OpenDirectory->setFont(font);
         System_UI->setCentralWidget(centralwidget);
         menubar = new QMenuBar(System_UI);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -146,6 +151,7 @@ public:
         label_2->setText(QCoreApplication::translate("System_UI", "Please input key:", nullptr));
         label_3->setText(QCoreApplication::translate("System_UI", "Operating Mode:", nullptr));
         Save->setText(QCoreApplication::translate("System_UI", "Save", nullptr));
+        OpenDirectory->setText(QCoreApplication::translate("System_UI", "Open", nullptr));
     } // retranslateUi
 
 };

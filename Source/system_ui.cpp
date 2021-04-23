@@ -4,7 +4,8 @@ System_UI::System_UI(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::System_UI)
 {
     ui->setupUi(this);
-
+    ui->statusbar->showMessage("RipeMD-TripleDes");
+    ui->OpenDirectory->setDisabled(true);
     ui->Encryption->setDisabled(true);
     ui->Decryption->setDisabled(true);
 }
@@ -14,27 +15,41 @@ System_UI::~System_UI() {
 }
 
 void System_UI::on_Select_clicked() {
-    filepath = QFileDialog::getOpenFileName(this, tr("文件对话框"), tr("."));
-    ui->FilePath->setStyleSheet("background:#FFFFFF");
+    filepath = QFileDialog::getOpenFileName(this, tr("File dialog"), tr("../test/"));
+    ui->FilePath->setStyleSheet("background:#FFFFFF; font-size:16px");
     ui->FilePath->setText(filepath);
 
     QFileInfo fileinfo(filepath);
     if(fileinfo.exists() && fileinfo.isFile()) {
         ui->statusbar->showMessage(filepath);
-        ui->Encryption->setDisabled(false);
-        ui->Decryption->setDisabled(false);
+        ui->OpenDirectory->setDisabled(false);
     } else {
         ui->FilePath->setStyleSheet("background:#ff0000");
-        ui->statusbar->showMessage("无效的文件路径！");
+        ui->statusbar->showMessage("Invalid file path !");
+        ui->Encryption->setDisabled(true);
+        ui->Decryption->setDisabled(true);
     }
 }
 
 void System_UI::on_Save_clicked() {
+    ui->KeyValue->setStyleSheet("background:#FFFFFF; font-size:16px");
     userkey = ui->KeyValue->toPlainText();
     ui->KeyValue->setText(userkey);
+
+    if(userkey!="") {
+        ui->statusbar->showMessage("You can start encryption and decryption !");
+        ui->Encryption->setDisabled(false);
+        ui->Decryption->setDisabled(false);
+    } else {
+        ui->KeyValue->setStyleSheet("background:#ff0000");
+        ui->statusbar->showMessage("Invalid user key !");
+        ui->Encryption->setDisabled(true);
+        ui->Decryption->setDisabled(true);
+    }
 }
 
 void System_UI::on_Encryption_clicked() {
+    clock_t time = clock();
     mode = ui->LineBox->currentIndex();
     string pstr = filepath.toStdString();
     string kstr = userkey.toStdString();
@@ -65,9 +80,20 @@ void System_UI::on_Encryption_clicked() {
             break;
         }
     }
+    char *TimeStr = new char[30];
+    sprintf(TimeStr,"Encryption succeeded ! time consuming : %lf s !",(clock()-time)*1.0/CLOCKS_PER_SEC);
+    ui->statusbar->showMessage(TimeStr);
+    delete[] TimeStr;
+    string suffix = pstr.substr(pstr.find_last_of('.') + 1);
+    string name = pstr.substr(0, pstr.rfind("."));
+    pstr = name + "_En." + suffix;
+    filepath =  QString::fromStdString(pstr);
+    ui->FilePath->setStyleSheet("background:#FFFFFF; font-size:16px");
+    ui->FilePath->setText(filepath);
 }
 
 void System_UI::on_Decryption_clicked() {
+    clock_t time = clock();
     mode = ui->LineBox->currentIndex();
     string pstr = filepath.toStdString();
     string kstr = userkey.toStdString();
@@ -98,6 +124,23 @@ void System_UI::on_Decryption_clicked() {
             break;
         }
     }
+    char *TimeStr = new char[30];
+    sprintf(TimeStr,"Decryption succeeded ! time consuming : %lf s !",(clock()-time)*1.0/CLOCKS_PER_SEC);
+    ui->statusbar->showMessage(TimeStr);
+    delete[] TimeStr;
+    string suffix = pstr.substr(pstr.find_last_of('.') + 1);
+    string name = pstr.substr(0, pstr.rfind("_"));
+    pstr = name + "." + suffix;
+    filepath =  QString::fromStdString(pstr);
+    ui->FilePath->setStyleSheet("background:#FFFFFF; font-size:16px");
+    ui->FilePath->setText(filepath);
 }
 
 
+
+void System_UI::on_OpenDirectory_clicked()
+{
+    string tmp = filepath.toStdString();
+    tmp = tmp.substr(0, tmp.rfind("/"));
+    QDesktopServices::openUrl(QUrl(QString::fromStdString(tmp), QUrl::TolerantMode));
+}
