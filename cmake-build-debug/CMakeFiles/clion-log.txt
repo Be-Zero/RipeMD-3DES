@@ -1,4 +1,0 @@
-"E:\Jet Brains\CLion 2019.1.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\RipeMD-3DES
--- Configuring done
--- Generating done
--- Build files have been written to: F:/RipeMD-3DES/cmake-build-debug
