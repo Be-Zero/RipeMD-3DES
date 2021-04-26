@@ -17,8 +17,6 @@ private:
 
     char *UserKey;
 
-    bool *UserSubKey;
-
     bool flag;
 
     char InitialVector[8];

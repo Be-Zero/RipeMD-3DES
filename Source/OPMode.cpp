@@ -14,18 +14,17 @@ OPMode::OPMode(char *Path, char *key, bool E_D) {
 void OPMode::ECB() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
-            des.Operation(UserSubKey, Plaintext + i, 1);
+            des.Operation(Plaintext + i, 1);
         }
         file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
-            des.Operation(UserSubKey, Plaintext + i, 0);
+            des.Operation(Plaintext + i, 0);
         }
         file_io.Save_DE(Plaintext);
     }
@@ -35,13 +34,12 @@ void OPMode::ECB() {
 void OPMode::CBC() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
             Xor(Plaintext + i, InitialVector);
-            des.Operation(UserSubKey, Plaintext + i, 1);
+            des.Operation(Plaintext + i, 1);
             memcpy(InitialVector, Plaintext + i, 8);
         }
         file_io.Save_EN(Plaintext);
@@ -50,7 +48,7 @@ void OPMode::CBC() {
         char tmp[8];
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
             memcpy(tmp, Plaintext + i, 8);
-            des.Operation(UserSubKey, Plaintext + i, 0);
+            des.Operation(Plaintext + i, 0);
             Xor(Plaintext + i, InitialVector);
             memcpy(InitialVector, tmp, 8);
         }
@@ -62,13 +60,12 @@ void OPMode::CBC() {
 void OPMode::CFB() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
 
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             Xor(Plaintext + i, InitialVector);
             memcpy(InitialVector, Plaintext + i, 8);
         }
@@ -77,7 +74,7 @@ void OPMode::CFB() {
         Plaintext = file_io.Load_DE();
         char tmp[8];
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             memcpy(tmp, Plaintext + i, 8);
             Xor(Plaintext + i, InitialVector);
             memcpy(InitialVector, tmp, 8);
@@ -90,20 +87,19 @@ void OPMode::CFB() {
 void OPMode::OFB() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
 
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             Xor(Plaintext + i, InitialVector);
         }
         file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             Xor(Plaintext + i, InitialVector);
         }
         file_io.Save_DE(Plaintext);
@@ -114,14 +110,13 @@ void OPMode::OFB() {
 void OPMode::CTR() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
     char tmp[1];
 
     if (flag) {
         Plaintext = file_io.Load_EN();
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             Xor(Plaintext + i, InitialVector);
             memcpy(tmp, InitialVector, 1);
             memcpy(InitialVector, InitialVector + 1, 7);
@@ -131,7 +126,7 @@ void OPMode::CTR() {
     } else {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
-            des.Operation(UserSubKey, InitialVector, 1);
+            des.Operation(InitialVector, 1);
             Xor(Plaintext + i, InitialVector);
             memcpy(tmp, InitialVector, 1);
             memcpy(InitialVector, InitialVector + 1, 7);
@@ -145,7 +140,6 @@ void OPMode::CTR() {
 void OPMode::PCBC() {
     Key key(UserKey);
     key.MakeSubKey();
-    UserSubKey = key.GetSubKey();
     File_IO file_io(FilaPath);
     char tmp[8];
 
@@ -154,7 +148,7 @@ void OPMode::PCBC() {
         for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
             memcpy(tmp, Plaintext + i, 8);
             Xor(Plaintext + i, InitialVector);
-            des.Operation(UserSubKey, Plaintext + i, 1);
+            des.Operation(Plaintext + i, 1);
             memcpy(InitialVector, tmp, 8);
             Xor(InitialVector, Plaintext + i);
         }
@@ -163,7 +157,7 @@ void OPMode::PCBC() {
         Plaintext = file_io.Load_DE();
         for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
             memcpy(tmp, Plaintext + i, 8);
-            des.Operation(UserSubKey, Plaintext + i, 0);
+            des.Operation(Plaintext + i, 0);
             Xor(Plaintext + i, InitialVector);
             memcpy(InitialVector, tmp, 8);
             Xor(InitialVector, Plaintext + i);

@@ -26,8 +26,6 @@ private:
 
     bool MR[48];
 
-    bool *SubKey;
-
     const static bool ENCRYPT = true;
 
     const static bool DECRYPT = false;
@@ -103,19 +101,19 @@ private:
 public:
     TripleDes();
 
-    void Transform(bool *Out, bool *In, const char *Table, int len); // 将64位密钥压缩位56位
-
     void DES(int flag, bool Type); // Des
 
-    void Xor(bool *left, const bool *right, int len); // 异或操作
+    void Xor32(bool *left, const bool *right); // 异或操作
 
-    void funF(bool In[32], const bool Ki[48]); // F函数
+    void Xor48(bool *left, const bool *right); // 异或操作
 
-    void funS(bool Out[32], const bool In[48]); // S盒置换
+    void funF(bool *In, const bool *Ki); // F函数
+
+    void funS(bool *Out, const bool *In); // S盒置换
 
     void Byte2Bit(bool *Out, const char *In, int bits);
 
-    void Bit2Byte(char *Out, const bool *In, int bits);
+    void Bit2Byte();
 
-    void Operation(bool *key, char *p, bool flag);
+    void Operation(char *p, bool flag);
 };

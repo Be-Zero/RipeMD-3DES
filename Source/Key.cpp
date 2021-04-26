@@ -4,6 +4,8 @@
 
 #include "../Header/Key.h"
 
+bool Key::SubKey[2][16][48] = {};
+
 Key::Key(char *In) {
     UserKey = In;
     KL = K;

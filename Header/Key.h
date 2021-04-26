@@ -21,8 +21,6 @@ private:
 
     char buffer[2];
 
-    bool SubKey[2][16][48]; // 轮密钥
-
     constexpr static char Table_PC1[56] = { // 密钥初始置换表
             57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18,
             10, 2, 59, 51, 43, 35, 27, 19, 11, 3, 60, 52, 44, 36,
@@ -42,6 +40,8 @@ private:
     };
 public:
     Key(char *In); // 构造函数
+
+    static bool SubKey[2][16][48]; // 轮密钥
 
     void RipeMD_process();
 
