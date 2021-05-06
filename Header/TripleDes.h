@@ -6,7 +6,12 @@
 #define SECURITYSYSTEM_TRIPLEDES_H
 
 #include <bitset>
+#include <string.h>
 #include "Key.h"
+
+typedef unsigned long long ull;
+
+typedef unsigned long ul;
 
 using namespace std;
 
@@ -14,17 +19,21 @@ using namespace std;
 
 class TripleDes {
 private:
-    bool BitsText[64]; // 二进制明文
+    ull BitsText; // 二进制明文
 
-    bool *Li, *Ri;
+    ul Li, Ri, temp;
 
-    bool buffer[64];
+    ul LB32_MASK = 0x00000001;
 
-    char temp[32];
+    ull L64_MASK = 0x00000000ffffffff;
+
+    ull LB64_MASK = 0x0000000000000001;
+
+    ull buffer;
 
     char *Plaintext;
 
-    bool MR[48];
+    ull MR;
 
     const static bool ENCRYPT = true;
 
@@ -103,13 +112,11 @@ public:
 
     void DES(int flag, bool Type); // Des
 
-    void funF(bool *In, const bool *Ki); // F函数
+    void funF(ul &In, ull Ki); // F函数
 
-    void funS(bool *Out, const bool *In); // S盒置换
+    void String2Ull();
 
-    void Byte2Bit(bool *Out, const char *In, int bits);
-
-    void Bit2Byte();
+    void Ull2String();
 
     void Operation(char *p, bool flag);
 };

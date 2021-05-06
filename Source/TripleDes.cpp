@@ -5,80 +5,107 @@
 #include "../Header/TripleDes.h"
 
 TripleDes::TripleDes() {
-    Li = BitsText;
-    Ri = BitsText + 32;
+
 }
 
 void TripleDes::DES(int flag, bool Type) {
-    for (int i = 0; i < 64; ++i)
-        buffer[i] = BitsText[Table_IP[i] - 1];
-    memcpy(BitsText, buffer, 64);
+    buffer = 0;
+    for (int i = 0; i < 64; ++i) {
+        buffer <<= 1;
+
+        buffer |= (BitsText >> (64 - Table_IP[i])) & LB64_MASK;
+    }
+    BitsText = buffer;
+    Ri = (ul) (BitsText & L64_MASK);
+    Li = (ul) (BitsText >> 32) & L64_MASK;
+
     if (Type == true) //加密
         for (int i = 0; i < 16; ++i) { // 16轮操作
-            memcpy(temp, Ri, 32);
-            funF(Ri, Key::SubKey[flag][i]);
-            for (int j = 0; j < 32; ++j)
-                Ri[j] ^= Li[j];
-            memcpy(Li, temp, 32);
+            temp = Ri;
+            bitset<48> bt(Key::SubKey[flag][i]);
+
+            funF(Ri, bt.to_ullong());
+
+            Ri ^= Li;
+            Li = temp;
         }
     else //解密
         for (int i = 15; i >= 0; --i) {// 加密操作的拟操作
-            memcpy(temp, Li, 32);
-            funF(Li, Key::SubKey[flag][i]);
-            for (int j = 0; j < 32; ++j)
-                Li[j] ^= Ri[j];
-            memcpy(Ri, temp, 32);
+            temp = Li;
+            bitset<48> bt(Key::SubKey[flag][i]);
+            funF(Li, bt.to_ullong());
+            Li ^= Ri;
+            Ri = temp;
         }
-    for (int i = 0; i < 64; ++i)
-        buffer[i] = BitsText[Table_InverseIP[i] - 1];
-    memcpy(BitsText, buffer, 64);
+
+    BitsText = ((ull) Li << 32) | (ull) Ri;
+
+    buffer = 0;
+    for (int i = 0; i < 64; ++i) {
+        buffer <<= 1;
+        buffer |= (BitsText >> (64 - Table_InverseIP[i])) & LB64_MASK;
+    }
+    BitsText = buffer;
 }
 
-void TripleDes::funF(bool *In, const bool *Ki) { // F函数
-    for (int i = 0; i < 48; ++i)
-        buffer[i] = In[Table_E[i] - 1];
-    memcpy(MR, buffer, 48);
-    for (int i = 0; i < 48; ++i)
-        MR[i] ^= Ki[i];
-    funS(In, MR); // S盒
-    for (int i = 0; i < 32; ++i)
-        buffer[i] = In[Table_P[i] - 1];
-    memcpy(In, buffer, 32);
+void TripleDes::funF(ul &In, ull Ki) { // F函数
+    buffer = 0;
+    for (int i = 0; i < 48; ++i) {
+        buffer <<= 1;
+        buffer |= (ull) ((In >> (32 - Table_E[i])) & LB32_MASK);
+    }
+
+    MR = buffer ^ Ki;
+
+    buffer = 0;
+    for (int i = 0; i < 8; ++i) {
+        char row = (char) ((MR & (0x0000840000000000 >> 6 * i)) >> (42 - 6 * i));
+        row = (row >> 4) | (row & 0x01);
+        char column = (char) ((MR & (0x0000780000000000 >> 6 * i)) >> (43 - 6 * i));
+        buffer <<= 4;
+        buffer |= (ul) (Box_S[i][row][column] & 0x0f);
+    }
+
+    In = buffer;
+
+    buffer = 0;
+    for (int i = 0; i < 32; ++i) {
+        buffer <<= 1;
+        buffer |= (ull) ((In >> (32 - Table_P[i])) & LB32_MASK);
+    }
+    In = buffer;
 }
 
-void TripleDes::funS(bool *Out, const bool *In) { // S盒置换
-    for (int i = 0, j, k; i < 8; ++i, In += 6, Out += 4) {
-        j = (In[0] << 1) + In[5];
-        k = (In[1] << 3) + (In[2] << 2) + (In[3] << 1) + In[4];
-        Byte2Bit(Out, &Box_S[i][j][k], 4);
+void TripleDes::String2Ull() {
+    BitsText = 0;
+    for (int i = 0; i < 8; ++i) {
+        BitsText<<=8;
+        BitsText |= (ull)Plaintext[i] & 0x00000000000000ff;
     }
 }
 
-//字节转换成位
-void TripleDes::Byte2Bit(bool *Out, const char *In, int bits) {
-    for (int i = 0; i < bits; ++i)
-        Out[i] = (In[i >> 3] >> (i & 7)) & 1;
-}
-
-//位转换字节
-void TripleDes::Bit2Byte() {
-    int bits = 64;
-    memset(Plaintext, 0, bits >> 3);
-    for (int i = 0; i < bits; ++i)
-        Plaintext[i >> 3] |= BitsText[i] << (i & 7);
+void TripleDes::Ull2String() {
+    for (int i = 7; i >= 0; --i) {
+        Plaintext[i] = (char)(BitsText & 0xff);
+        BitsText >>= 8;
+    }
 }
 
 void TripleDes::Operation(char *T, bool flag) {
     Plaintext = T;
-    Byte2Bit(BitsText, Plaintext, 64);
+
+    String2Ull();
+
     if (flag) {
         DES(0, ENCRYPT);
+
         DES(1, !ENCRYPT);
         DES(0, ENCRYPT);
     } else {
         DES(0, DECRYPT);
+
         DES(1, !DECRYPT);
         DES(0, DECRYPT);
     }
-    Bit2Byte();
+    Ull2String();
 }
