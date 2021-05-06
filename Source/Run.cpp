@@ -6,8 +6,8 @@
 
 int main() {
     clock_t t;
-    char *EnFilePath = "../test/test.png";
-    char *DeFilePath = "../test/test_En.png";
+    char *EnFilePath = "../test/test.txt";
+    char *DeFilePath = "../test/test_En.txt";
     char *UserKey = "qth";
     OPMode ep1(EnFilePath, UserKey, 1);
     t=clock();

@@ -10,50 +10,39 @@ TripleDes::TripleDes() {
 }
 
 void TripleDes::DES(int flag, bool Type) {
-    for (int i = 0; i < 64; ++i) {
+    for (int i = 0; i < 64; ++i)
         buffer[i] = BitsText[Table_IP[i] - 1];
-    }
     memcpy(BitsText, buffer, 64);
     if (Type == true) //加密
-        for (int i = 0; i < 16; ++i) {// 16轮操作
+        for (int i = 0; i < 16; ++i) { // 16轮操作
             memcpy(temp, Ri, 32);
             funF(Ri, Key::SubKey[flag][i]);
-            Xor32(Ri, Li);
+            for (int j = 0; j < 32; ++j)
+                Ri[j] ^= Li[j];
             memcpy(Li, temp, 32);
         }
     else //解密
         for (int i = 15; i >= 0; --i) {// 加密操作的拟操作
             memcpy(temp, Li, 32);
             funF(Li, Key::SubKey[flag][i]);
-            Xor32(Li, Ri);
+            for (int j = 0; j < 32; ++j)
+                Li[j] ^= Ri[j];
             memcpy(Ri, temp, 32);
         }
-    for (int i = 0; i < 64; ++i) {
+    for (int i = 0; i < 64; ++i)
         buffer[i] = BitsText[Table_InverseIP[i] - 1];
-    }
     memcpy(BitsText, buffer, 64);
 }
 
-void TripleDes::Xor32(bool *left, const bool *right) { // 异或操作
-    for (int i = 0; i < 32; ++i)
-        left[i] ^= right[i];
-}
-
-void TripleDes::Xor48(bool *left, const bool *right) { // 异或操作
-    for (int i = 0; i < 48; ++i)
-        left[i] ^= right[i];
-}
-
 void TripleDes::funF(bool *In, const bool *Ki) { // F函数
-    for (int i = 0; i < 48; ++i) {
+    for (int i = 0; i < 48; ++i)
         buffer[i] = In[Table_E[i] - 1];
-    }
     memcpy(MR, buffer, 48);
-    Xor48(MR, Ki); // 异或操作
+    for (int i = 0; i < 48; ++i)
+        MR[i] ^= Ki[i];
     funS(In, MR); // S盒
-    for (int i = 0; i < 32; ++i) {
+    for (int i = 0; i < 32; ++i)
         buffer[i] = In[Table_P[i] - 1];
-    }
     memcpy(In, buffer, 32);
 }
 
@@ -75,9 +64,8 @@ void TripleDes::Byte2Bit(bool *Out, const char *In, int bits) {
 void TripleDes::Bit2Byte() {
     int bits = 64;
     memset(Plaintext, 0, bits >> 3);
-    for (int i = 0; i < bits; ++i) {
+    for (int i = 0; i < bits; ++i)
         Plaintext[i >> 3] |= BitsText[i] << (i & 7);
-    }
 }
 
 void TripleDes::Operation(char *T, bool flag) {

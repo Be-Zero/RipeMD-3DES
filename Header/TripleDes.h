@@ -18,7 +18,7 @@ private:
 
     bool *Li, *Ri;
 
-    char buffer[64];
+    bool buffer[64];
 
     char temp[32];
 
@@ -102,10 +102,6 @@ public:
     TripleDes();
 
     void DES(int flag, bool Type); // Des
-
-    void Xor32(bool *left, const bool *right); // 异或操作
-
-    void Xor48(bool *left, const bool *right); // 异或操作
 
     void funF(bool *In, const bool *Ki); // F函数
 
