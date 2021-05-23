@@ -2,6 +2,7 @@
 #define SYSTEM_UI_H
 
 #include <QMainWindow>
+#include <QProgressBar>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QString>

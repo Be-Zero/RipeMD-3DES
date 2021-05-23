@@ -95,13 +95,13 @@ void System_UI::on_Encryption_clicked() {
 }
 
 void System_UI::on_Decryption_clicked() {
-    clock_t time = clock();
     ui->statusbar->showMessage("busying...");
     QApplication::processEvents();
     mode = ui->LineBox->currentIndex();
     string pstr = filepath.toStdString();
     string kstr = userkey.toStdString();
     OPMode ep(&pstr[0], &kstr[0], false);
+    clock_t time = clock();
     switch(mode) {
         case 0: {
             ep.ECB();
@@ -139,8 +139,6 @@ void System_UI::on_Decryption_clicked() {
     ui->FilePath->setStyleSheet("background:#FFFFFF; font-size:16px");
     ui->FilePath->setText(filepath);
 }
-
-
 
 void System_UI::on_OpenDirectory_clicked()
 {
