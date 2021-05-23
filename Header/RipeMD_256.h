@@ -13,9 +13,6 @@
 
 using namespace std;
 
-#endif //RIPEMD_3DES_RIPEMD_256_H
-
-typedef unsigned char byte;
 typedef unsigned long ulong;
 
 class RipeMD_256 {
@@ -61,3 +58,5 @@ public:
 
     unsigned char* RMD(unsigned char *message);
 };
+
+#endif //RIPEMD_3DES_RIPEMD_256_H

@@ -49,11 +49,13 @@ void System_UI::on_Save_clicked() {
 }
 
 void System_UI::on_Encryption_clicked() {
-    clock_t time = clock();
+    ui->statusbar->showMessage("busying...");
+    QApplication::processEvents();
     mode = ui->LineBox->currentIndex();
     string pstr = filepath.toStdString();
     string kstr = userkey.toStdString();
-    OPMode ep(&pstr[0], &kstr[0], 1);
+    OPMode ep(&pstr[0], &kstr[0], true);
+    clock_t time = clock();
     switch(mode) {
         case 0: {
             ep.ECB();
@@ -94,10 +96,12 @@ void System_UI::on_Encryption_clicked() {
 
 void System_UI::on_Decryption_clicked() {
     clock_t time = clock();
+    ui->statusbar->showMessage("busying...");
+    QApplication::processEvents();
     mode = ui->LineBox->currentIndex();
     string pstr = filepath.toStdString();
     string kstr = userkey.toStdString();
-    OPMode ep(&pstr[0], &kstr[0], 0);
+    OPMode ep(&pstr[0], &kstr[0], false);
     switch(mode) {
         case 0: {
             ep.ECB();

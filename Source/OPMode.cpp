@@ -1,5 +1,5 @@
 //
-// Created by 12036 on 2021/4/17.
+// Created by BeZero on 2021/4/17.
 //
 
 #include "../Header/OPMode.h"
@@ -17,18 +17,15 @@ void OPMode::ECB() {
     File_IO file_io(FilaPath);
     if (flag) {
         Plaintext = file_io.Load_EN();
-        for (int i = 0; i < file_io.GetEnFileSize(); i += 8) {
+        for (int i = 0; i < file_io.GetEnFileSize(); i += 8)
             des.Operation(Plaintext + i, 1);
-        }
         file_io.Save_EN(Plaintext);
     } else {
         Plaintext = file_io.Load_DE();
-        for (int i = 0; i < file_io.GetDeFileSize(); i += 8) {
+        for (int i = 0; i < file_io.GetDeFileSize(); i += 8)
             des.Operation(Plaintext + i, 0);
-        }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::CBC() {
@@ -54,7 +51,6 @@ void OPMode::CBC() {
         }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::CFB() {
@@ -81,7 +77,6 @@ void OPMode::CFB() {
         }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::OFB() {
@@ -104,7 +99,6 @@ void OPMode::OFB() {
         }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::CTR() {
@@ -134,7 +128,6 @@ void OPMode::CTR() {
         }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::PCBC() {
@@ -164,7 +157,6 @@ void OPMode::PCBC() {
         }
         file_io.Save_DE(Plaintext);
     }
-    cout << "finished!" << endl;
 }
 
 void OPMode::Xor(char *left, char *right) { // 异或操作

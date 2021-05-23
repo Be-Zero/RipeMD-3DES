@@ -36,9 +36,10 @@ void File_IO::Save_EN(char *In) {
     ofstream file(name + "_En." + suffix, ios::binary);
     file.write(Plaintext, BlockNum * 8);
 
-    char *buffer = new char[32];
+    char buffer[32];
     bitset<32> b = Supple;
-    strcpy(buffer, b.to_string().c_str());
+
+    memcpy(buffer, b.to_string().c_str(), 32);
     file.write(buffer, 32);
 }
 
@@ -51,11 +52,10 @@ char* File_IO::Load_DE() {
     file.read(Plaintext, FileSize); // 读取全部文件
 
     FileSize -= 32;
-    char *buffer = new char[32];
-    strncpy(buffer, Plaintext + FileSize, 32);
+    char buffer[32];
+    memcpy(buffer, Plaintext + FileSize, 32);
     bitset<32> b(buffer);
     Supple = b.to_ulong();
-    delete[] buffer;
 
     file.close(); // 关闭文件
     return Plaintext;
@@ -78,4 +78,8 @@ int File_IO::GetEnFileSize() {
 
 int File_IO::GetDeFileSize() {
     return FileSize;
+}
+
+File_IO::~File_IO() {
+    delete[] Plaintext;
 }

@@ -9,8 +9,6 @@
 
 using namespace std;
 
-#endif //RIPEMD_3DES_OPMODE_H
-
 class OPMode {
 private:
     char *Plaintext;
@@ -42,3 +40,5 @@ public:
 
     void Xor(char *left, char *right);
 };
+
+#endif //RIPEMD_3DES_OPMODE_H

@@ -13,7 +13,6 @@
 
 using namespace std;
 
-#endif //SECURITYSYSTEM_FILE_IO_H
 class File_IO {
 private:
     string FilePath; // 文件路径
@@ -24,6 +23,7 @@ private:
 
 public:
     File_IO(string In); // 构造函数
+    ~File_IO();
     char* Load_EN(); // 读取文件
     void Save_EN(char *In); // 存储文件
     char* Load_DE(); // 读取文件
@@ -31,3 +31,5 @@ public:
     int GetEnFileSize();
     int GetDeFileSize();
 };
+
+#endif //SECURITYSYSTEM_FILE_IO_H

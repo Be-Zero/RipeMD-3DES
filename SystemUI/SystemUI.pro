@@ -22,7 +22,8 @@ SOURCES += \
     ../Source/OPMode.cpp \
     ../Source/File_IO.cpp \
     ../Source/RipeMD_256.cpp \
-    ../Source/TripleDes.cpp
+    ../Source/TripleDes.cpp \
+    ../Source/Run.cpp
 
 HEADERS += \
     ../Header/system_ui.h \
@@ -30,7 +31,8 @@ HEADERS += \
     ../Header/OPMode.h \
     ../Header/File_IO.h \
     ../Header/RipeMD_256.h \
-    ../Header/TripleDes.h
+    ../Header/TripleDes.h \
+    ../Header/Run.h
 
 FORMS += \
     system_ui.ui

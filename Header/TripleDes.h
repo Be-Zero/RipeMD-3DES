@@ -15,8 +15,6 @@ typedef unsigned long ul;
 
 using namespace std;
 
-#endif //SECURITYSYSTEM_TRIPLEDES_H
-
 class TripleDes {
 private:
     ull BitsText; // 二进制明文
@@ -107,9 +105,8 @@ private:
             16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10,
             2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25
     };
-public:
-    TripleDes();
 
+public:
     void DES(int flag, bool Type); // Des
 
     void funF(ul &In, ull Ki); // F函数
@@ -120,3 +117,5 @@ public:
 
     void Operation(char *p, bool flag);
 };
+
+#endif //SECURITYSYSTEM_TRIPLEDES_H

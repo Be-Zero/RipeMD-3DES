@@ -41,4 +41,5 @@ private:
     QString userkey;
     int mode;
 };
+
 #endif // SYSTEM_UI_H

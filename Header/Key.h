@@ -11,7 +11,6 @@ using namespace std;
 
 typedef bool (*PSubKey)[16][48];
 
-#endif //SECURITYSYSTEM_KEY_H
 
 class Key {
 private:
@@ -19,7 +18,7 @@ private:
 
     bool K[64], *KL, *KR;
 
-    char buffer[2];
+    char buffer[64];
 
     constexpr static char Table_PC1[56] = { // 密钥初始置换表
             57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18,
@@ -56,3 +55,4 @@ public:
     void Byte2Bit(bool *Out, const char *In, int bits);
 };
 
+#endif //SECURITYSYSTEM_KEY_H
