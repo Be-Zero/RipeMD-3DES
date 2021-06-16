@@ -5,6 +5,7 @@ System_UI::System_UI(QWidget *parent)
 {
     ui->setupUi(this);
     ui->statusbar->showMessage("RipeMD-TripleDes");
+    setWindowIcon(QIcon("../SystemUI/icon.jpg"));
     ui->OpenDirectory->setDisabled(true);
     ui->Encryption->setDisabled(true);
     ui->Decryption->setDisabled(true);

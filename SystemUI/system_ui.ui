@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>System_UI</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Monitor-256.ico</normaloff>Monitor-256.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="Select">
     <property name="geometry">

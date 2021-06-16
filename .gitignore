@@ -3,3 +3,4 @@ build-SystemUI-Desktop_Qt_5_14_0_MinGW_32_bit-Debug/
 cmake-build-debug/
 .gitattributes
 CMakeLists.txt
+test/test.mp4
